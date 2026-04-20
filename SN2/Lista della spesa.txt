@@ -2,6 +2,8 @@ Scheda: https://www.aliexpress.com/item/1005008796158734.html
 Altimetro:https://www.aliexpress.com/w/wholesale-bmp390.html
 IMU:https://www.aliexpress.com/w/wholesale-mpu6050.html
 Breadboard: https://www.aliexpress.com/item/1005006143786009.html
-Kit cavi: 
+Kit cavi: https://it.aliexpress.com/item/1005002349042216.html?spm=a2g0o.productlist.main.1.6de061c31LWvX3&algo_pvid=3cae24fb-4e6f-4dcd-8eee-9895d2e14bf2&algo_exp_id=3cae24fb-4e6f-4dcd-8eee-9895d2e14bf2-0&pdp_ext_f=%7B%22order%22%3A%221564%22%2C%22eval%22%3A%221%22%2C%22fromPage%22%3A%22search%22%7D&pdp_npi=6%40dis%21EUR%212.45%211.72%21%21%212.81%211.97%21%40210384cc17767196888675423eef18%2112000020225751906%21sea%21IT%216359447523%21ABX%211%210%21n_tag%3A-29910%3Bd%3Ae9e76aeb%3Bm03_new_user%3A-29895&curPageLogUid=huCeYy3A1IsC&utparam-url=scene%3Asearch%7Cquery_from%3A%7Cx_object_id%3A1005002349042216%7C_p_origin_prod%3A
 Supporto da montare su razzo: https://it.aliexpress.com/w/wholesale-fr4-fotosensibile.html?osf=auto_suggest&spm=a2g0n.home.header.0
 Step file ESP32 S3: https://grabcad.com/library/esp32-s3-wroom-1-1
+
+nota: secondo me i cavi 10cm bastano considerando che il razzo non ha un diametro enorme non vorrei che poi diventasse un mega groviglio
