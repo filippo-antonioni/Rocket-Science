@@ -1,0 +1,7 @@
+Scheda: https://www.aliexpress.com/item/1005008796158734.html
+Altimetro: https://www.aliexpress.com/w/wholesale-mpu6050.html
+IMU: https://www.aliexpress.com/w/wholesale-bmp390.html
+Breadboard: https://www.aliexpress.com/item/1005006143786009.html
+Kit cavi: 
+Supporto da montare su razzo: https://it.aliexpress.com/w/wholesale-fr4-fotosensibile.html?osf=auto_suggest&spm=a2g0n.home.header.0
+Step file ESP32 S3: https://grabcad.com/library/esp32-s3-wroom-1-1
