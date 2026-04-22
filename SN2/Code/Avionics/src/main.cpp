@@ -101,6 +101,10 @@ void setup() {
         while(1) delay(10);
     }
 
+    IMU.startAccel(100, 16);
+    IMU.startGyro(100, 2000);
+    Serial.println("IMU ICM-42670-P: OK (Tarata a 16G)");
+
     // --- CALIBRAZIONE ZERO ---
     Serial.println("Calibrazione altimetro in corso...");
     delay(1000); // tempo per far assestare il sensore
