@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include <Wire.h>  //per I2C
 #include <Adafruit_BMP280.h>  //per barometro, correggi con 380/390 eventualmente 
-#include <Adafruit_MPU6050.h> //accelerometro
+#include "ICM42670P.h" //accelerometro
 #include <LittleFS.h> // per memoria esp
 
 #define SDA_PIN 8
@@ -63,7 +63,7 @@ void loop() {
 
 
 Adafruit_BMP280 bmp;        //eventualmente cambia con 380/390
-Adafruit_MPU6050 mpu;
+ICM42670 IMU(Wire, 0);    // 0 indica l'indirizzo I2C standard 0x68
 
 float altitudineZero = 0;
 File fileLog;
@@ -71,10 +71,12 @@ File fileLog;
 void setup() {
     Serial.begin(115200);
     
-  
+    delay(500);
+
     Wire.begin(8, 9); 
 
-    
+    Serial.println("Inizializzazione...");
+
     if (!LittleFS.begin(true)) {
         Serial.println("Errore: Memoria Flash non montata!");
         return;
@@ -94,8 +96,8 @@ void setup() {
                     Adafruit_BMP280::FILTER_X16,      // Filtro hardware interno
                     Adafruit_BMP280::STANDBY_MS_1);   // Tempo tra le letture
 
-    if (!mpu.begin()) { 
-        Serial.println("ERRORE: MPU6050 non trovato!"); 
+    if (!IMU.begin()) { 
+        Serial.println("ERRORE: ICM-42670-P non trovato!"); 
         while(1) delay(10);
     }
 
@@ -120,8 +122,8 @@ void setup() {
 void loop() {
     unsigned long tempo = millis(); 
 
-    sensors_event_t a, g, temp;
-    mpu.getEvent(&a, &g, &temp); 
+    inv_imu_sensor_event_t dati_volo;    
+    IMU.getDataFromRegisters(dati_volo); 
     
     // Calcoliamo l'altitudine relativa (rispetto al suolo da dove decolla)
     float altitudineRelativa = bmp.readAltitude(p0) - altitudineZero;
@@ -132,15 +134,14 @@ void loop() {
     if(fileLog) {
         fileLog.print(tempo); fileLog.print(",");
         fileLog.print(altitudineRelativa); fileLog.print(",");
-        fileLog.print(a.acceleration.x); fileLog.print(",");
-        fileLog.print(a.acceleration.y); fileLog.print(",");
-        fileLog.println(a.acceleration.z);
+        fileLog.print(dati_volo.accel[0]); fileLog.print(",");
+        fileLog.print(dati_volo.accel[1]); fileLog.print(",");
+        fileLog.println(dati_volo.accel[2]);
         fileLog.close(); 
     }
 
-    Serial.print("Quota: ");
-    Serial.print(altitudineRelativa);
-    Serial.println(" m");
+    Serial.printf("Quota: %.2f m | Acc: [%.2f, %.2f, %.2f] m/s²\n", altitudineRelativa, dati_volo.accel[0], dati_volo.accel[1], dati_volo.accel[2]);
+    
 
     
     delay(50); 
