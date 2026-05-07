@@ -12,9 +12,9 @@ Step file ESP32 S3: https://grabcad.com/library/esp32-s3-wroom-1-1
 
 nota: secondo me i cavi 10cm bastano considerando che il razzo non ha un diametro enorme non vorrei che poi diventasse un mega groviglio
 
-Batteria: una qualunque batteria LiPo da 3.7 minimo 500mAh di corrente e 25C o 50C per la scarica per far andare il paracadute
-https://it.aliexpress.com/w/wholesale-batteria-litio-3.7v-25c-50c.html?spm=a2g0o.detail.search.0
-
+Batteria: https://it.aliexpress.com/item/1005010048131612.html?spm=a2g0o.productlist.main.3.2d4a7Ahg7AhgK6&algo_pvid=1b45dbb4-5b5b-47b6-ab73-3c1c738c9b16&algo_exp_id=1b45dbb4-5b5b-47b6-ab73-3c1c738c9b16-2&pdp_ext_f=%7B%22order%22%3A%22309%22%2C%22eval%22%3A%221%22%2C%22fromPage%22%3A%22search%22%7D&pdp_npi=6%40dis%21EUR%216.23%214.61%21%21%217.16%215.30%21%402103846917781603492162414e0f29%2112000050945064885%21sea%21IT%216359447523%21ABX%211%210%21n_tag%3A-29910%3Bd%3Ae9e76aeb%3Bm03_new_user%3A-29895&curPageLogUid=f3hRaRq4uUCJ&utparam-url=scene%3Asearch%7Cquery_from%3A%7Cx_object_id%3A1005010048131612%7C_p_origin_prod%3A#nav-specification
+https://it.aliexpress.com/item/1005010048131612.html?spm=a2g0o.productlist.main.3.2d4a7Ahg7AhgK6&algo_pvid=1b45dbb4-5b5b-47b6-ab73-3c1c738c9b16&algo_exp_id=1b45dbb4-5b5b-47b6-ab73-3c1c738c9b16-2&pdp_ext_f=%7B%22order%22%3A%22309%22%2C%22eval%22%3A%221%22%2C%22fromPage%22%3A%22search%22%7D&pdp_npi=6%40dis%21EUR%216.23%214.61%21%21%217.16%215.30%21%402103846917781603492162414e0f29%2112000050945064885%21sea%21IT%216359447523%21ABX%211%210%21n_tag%3A-29910%3Bd%3Ae9e76aeb%3Bm03_new_user%3A-29895&curPageLogUid=f3hRaRq4uUCJ&utparam-url=scene%3Asearch%7Cquery_from%3A%7Cx_object_id%3A1005010048131612%7C_p_origin_prod%3A#nav-specification
+scegli se con o senza cavetto 
 
 MOSFET, collegato col cavo dalla batteria e con un altro cavo all'esp32 serve perché con corrente a 3.3V da scheda apre il cancello e manda scarica dalla batteria direttamente all'accenditore, modello IRLZ44N:
 https://it.aliexpress.com/w/wholesale-IRLZ44N.html?spm=a2g0o.productlist.search.0
