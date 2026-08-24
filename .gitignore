@@ -1,0 +1,18 @@
+# ===== MATLAB / Simulink =====
+# Cache di compilazione Simulink (rigenerabile, non va versionata)
+slprj/
+*.slxc
+# Autosave dell'editor MATLAB
+*.asv
+*.m~
+
+# ===== PlatformIO / ESP32 (build rigenerabile) =====
+.pio/
+
+# ===== Cache editor / language server =====
+.cache/
+
+# ===== File di sistema =====
+.DS_Store
+Thumbs.db
+desktop.ini

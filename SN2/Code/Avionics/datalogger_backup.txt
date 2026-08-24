@@ -1,0 +1,145 @@
+#include <Arduino.h>
+#include <Wire.h>             // per I2C
+#include <Adafruit_BMP280.h>  // per barometro, correggi con 380/390 eventualmente
+#include "ICM42670P.h"        // accelerometro
+#include <LittleFS.h>         // per memoria esp
+
+// ------------------------- PIN -------------------------
+#define SDA_PIN 8
+#define SCL_PIN 9
+// #define PIN_MOSFET 4  // FUTURO: gate dell'IRLZ44N per l'accenditore.
+//                          Scegli un GPIO che sta LOW durante il boot (NON usare
+//                          gli strapping pin 0/3/45/46!) e metti una resistenza
+//                          fisica di pull-down ~10k tra gate e GND: il pin non
+//                          deve MAI poter andare alto da solo all'accensione.
+
+// ---------------------- COSTANTI ----------------------
+#define P0_HPA 1013.25  // pressione riferimento livello mare [hPa], come readAltitude vuole
+
+// >>> RICORDA: CONVERSIONE UNITA' IMU <<<
+// getDataFromRegisters() restituisce numeri GREZZI (LSB, interi), NON m/s^2!
+// Con fondoscala +/-16 g  -> 2048 LSB per ogni g      (32768 / 16)
+// Con fondoscala +/-2000 dps -> 16.4 LSB per ogni dps (32768 / 2000)
+// Se cambi fondoscala in startAccel()/startGyro() DEVI aggiornare questi numeri.
+constexpr float ACC_LSB_PER_G    = 2048.0f;
+constexpr float GYRO_LSB_PER_DPS = 16.4f;
+constexpr float G_MS2            = 9.80665f;
+
+constexpr uint32_t PERIODO_LOOP_MS = 10;  // 10 ms = loop a 100 Hz (prima con delay(50) eri a ~20 Hz)
+constexpr int      RIGHE_PER_FLUSH = 25;  // ogni quante righe forzare la scrittura su flash
+constexpr int      N_CALIBRAZIONE  = 50;  // letture baro da mediare per lo zero
+
+Adafruit_BMP280 bmp;      // eventualmente cambia con 380/390
+ICM42670 IMU(Wire, 0);    // 0 indica l'indirizzo I2C standard 0x68
+
+float altitudineZero = 0;
+File  fileLog;            // tenuto APERTO per tutto il volo: aprire/chiudere il file
+                          // a ogni loop costa millisecondi preziosi
+int   righeDaFlush = 0;
+
+void setup() {
+    Serial.begin(115200);
+    delay(500);
+
+    Wire.begin(SDA_PIN, SCL_PIN);
+    Wire.setClock(400000);  // I2C a 400 kHz: letture piu' veloci (default 100 kHz)
+
+    Serial.println("Inizializzazione...");
+
+    if (!LittleFS.begin(true)) {
+        Serial.println("Errore: Memoria Flash non montata!");
+        return;
+    }
+
+    // --- SETUP BMP280 ---
+    if (!bmp.begin()) {
+        Serial.println("ERRORE: BMP280 non trovato!");
+        while (1) delay(10);
+    }
+
+    // Oversampling e filtro ridotti rispetto a prima (era tutto X16):
+    // X16 liscia tanto ma rende il sensore LENTO e in ritardo. Per un razzo
+    // meglio dati piu' rapidi e un filtro software (Kalman) a valle.
+    bmp.setSampling(Adafruit_BMP280::MODE_NORMAL,
+                    Adafruit_BMP280::SAMPLING_X1,   // Temp: basta poco
+                    Adafruit_BMP280::SAMPLING_X8,   // Pressione: compromesso rumore/velocita'
+                    Adafruit_BMP280::FILTER_X4,     // Filtro IIR leggero = poco ritardo
+                    Adafruit_BMP280::STANDBY_MS_1);
+
+    if (!IMU.begin()) {
+        Serial.println("ERRORE: ICM-42670-P non trovato!");
+        while (1) delay(10);
+    }
+
+    IMU.startAccel(100, 16);    // 100 Hz, fondoscala 16 g  -> ACC_LSB_PER_G = 2048
+    IMU.startGyro(100, 2000);   // 100 Hz, fondoscala 2000 dps -> GYRO_LSB_PER_DPS = 16.4
+    Serial.println("IMU ICM-42670-P: OK (fondoscala 16 g)");
+
+    // --- CALIBRAZIONE ZERO ---
+    // Una lettura singola e' rumorosa (+/-0.5 m): meglio la media di tante.
+    Serial.println("Calibrazione altimetro in corso...");
+    delay(1000);  // tempo per far assestare il sensore
+
+    float somma = 0;
+    for (int i = 0; i < N_CALIBRAZIONE; i++) {
+        somma += bmp.readAltitude(P0_HPA);
+        delay(20);
+    }
+    altitudineZero = somma / N_CALIBRAZIONE;
+    Serial.printf("Quota terra (media di %d letture): %.2f m\n", N_CALIBRAZIONE, altitudineZero);
+
+    // --- FILE DI LOG ---
+    // Un solo nome file per header e dati (prima erano due diversi!).
+    // FILE_WRITE sovrascrive il volo precedente: scaricalo prima di riaccendere.
+    fileLog = LittleFS.open("/volo.csv", FILE_WRITE);
+    if (fileLog) {
+        fileLog.println("tempo_ms,alt_relativa_m,acc_x_ms2,acc_y_ms2,acc_z_ms2,gyro_x_dps,gyro_y_dps,gyro_z_dps");
+    } else {
+        Serial.println("ERRORE: impossibile creare /volo.csv");
+    }
+}
+
+void loop() {
+    // Cadenza fissa a 100 Hz senza delay bloccante
+    static uint32_t prossimoGiro = 0;
+    uint32_t ora = millis();
+    if (ora < prossimoGiro) return;
+    prossimoGiro = ora + PERIODO_LOOP_MS;
+
+    // --- LETTURA IMU (grezzi -> unita' fisiche) ---
+    inv_imu_sensor_event_t datiVolo;
+    IMU.getDataFromRegisters(datiVolo);
+
+    // Conversione LSB -> m/s^2 e LSB -> dps (vedi costanti in alto!)
+    float accX = datiVolo.accel[0] / ACC_LSB_PER_G * G_MS2;
+    float accY = datiVolo.accel[1] / ACC_LSB_PER_G * G_MS2;
+    float accZ = datiVolo.accel[2] / ACC_LSB_PER_G * G_MS2;
+    float gyrX = datiVolo.gyro[0] / GYRO_LSB_PER_DPS;
+    float gyrY = datiVolo.gyro[1] / GYRO_LSB_PER_DPS;
+    float gyrZ = datiVolo.gyro[2] / GYRO_LSB_PER_DPS;
+
+    // --- LETTURA BAROMETRO ---
+    // Quota relativa al punto di lancio
+    float altitudineRelativa = bmp.readAltitude(P0_HPA) - altitudineZero;
+
+    // --- LOGGING ---
+    if (fileLog) {
+        fileLog.printf("%lu,%.2f,%.3f,%.3f,%.3f,%.2f,%.2f,%.2f\n",
+                       ora, altitudineRelativa, accX, accY, accZ, gyrX, gyrY, gyrZ);
+        // flush() ogni tot righe: garantisce che i dati finiscano davvero in
+        // flash (se la batteria si stacca all'atterraggio perdi al massimo
+        // 0.25 s di dati), senza pagare il costo del flush a ogni riga.
+        if (++righeDaFlush >= RIGHE_PER_FLUSH) {
+            fileLog.flush();
+            righeDaFlush = 0;
+        }
+    }
+
+    // --- TELEMETRIA SU SERIALE (rallentata: stampare a 100 Hz intasa tutto) ---
+    static int contaStampa = 0;
+    if (++contaStampa >= 25) {  // stampa a 4 Hz
+        contaStampa = 0;
+        Serial.printf("Quota: %.2f m | Acc: [%.2f, %.2f, %.2f] m/s2\n",
+                      altitudineRelativa, accX, accY, accZ);
+    }
+}
