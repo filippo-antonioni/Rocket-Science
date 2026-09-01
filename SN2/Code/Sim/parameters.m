@@ -16,7 +16,7 @@ P.area_paracadute = pi * (P.diam_paracadute/2)^2;
 % Per cambiare motore: scarica il nuovo .eng, sovrascrivi dati_motore.eng, fine.
 cartella = fileparts(mfilename('fullpath'));
 righe = readlines(fullfile(cartella, 'dati_motore.eng'));
-righe = righe(~startsWith(strtrim(righe), ';') & strlength(strtrim(righe)) > 0);
+righe = righe(~startsWith(strtrim(righe), ';') & strlength(strtrim(righe)) > 0); 
 
 intestazione = strsplit(strtrim(righe(1)));
 P.motore_nome        = intestazione{1};                    % 'E12'
@@ -24,7 +24,7 @@ P.massa_prop         = str2double(intestazione{5});        % [kg]
 P.massa_motore_vuoto = str2double(intestazione{6}) - P.massa_prop;  % [kg] involucro che scende col paracadute
 
 coppie = str2num(char(join(righe(2:end), ' ')));           %#ok<ST2NM>
-P.curva_spinta = [0 0; reshape(coppie, 2, []).'];          % 
+P.curva_spinta = [0 0; reshape(coppie, 2, []).'];          % matrice Nx2 colonna1 = tempo, colonna2= spinta
 P.t_burnout = P.curva_spinta(end,1);                       % [s] 
 
 %% --- AMBIENTE ---
