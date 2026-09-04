@@ -78,7 +78,7 @@ P.baro.ritardo_s = 0.09;      % [s] par. 3.3.3: il filtro IIR fa
                               %      4/44 Hz ~ 0.09 s: il baro ti dice dove il razzo
                               %      era ~90 ms fa. Con X16 sarebbe ~0.36 s: ecco
                               %      perche' in main.cpp siamo scesi da X16 a X4.
-
+P.baro.c=4;
 %% --- SENSORI: IMU ICM-42670-P ---
 % Fonte: datasheet TDK DS-000451 + impostazioni in main.cpp
 % (startAccel(100, 16), startGyro(100, 2000)).
@@ -125,4 +125,8 @@ P.logica.n_conferme       = 5;     % [-] campioni consecutivi per confermare un 
 P.logica.quota_min_deploy = 25;    % [m] 
 P.logica.t_min_deploy     = 1.5;   % [s]
 P.logica.t_max_deploy     = 12;    % [s] failsafe
+
+%% MERDA PER I RANDOM IN SIMULA SENS
+
+P.seed=99; %completamente a caso
 end

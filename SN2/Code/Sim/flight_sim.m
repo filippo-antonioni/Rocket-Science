@@ -123,7 +123,7 @@ end
 flight.t=t(1:n);
 flight.h=h(1:n);
 flight.v=v(1:n);
-flight.a=acc(1:n);
+flight.acc=acc(1:n);
 flight.t_burnout=t(i_burnout);
 flight.t_apogeo=t(i_apogeo);
 flight.h_apogeo=h(i_apogeo);
