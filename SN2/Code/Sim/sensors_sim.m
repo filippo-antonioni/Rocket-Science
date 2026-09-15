@@ -35,6 +35,7 @@ acc_mis = max(min(acc_mis,fs),-fs); % check che non abbia saturato anche se con 
 
 sens.t=t;
 sens.acc=acc_mis;
+sens.bias_acc_vero = bias;  % verita' iniettata: la stima Kalman del bias deve convergere qui
 
 %% GIROSCOPIO
 % Sim 1D = nessuna rotazione -> verita' = 0. L'uscita e' puro errore.

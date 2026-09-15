@@ -55,7 +55,7 @@ P.baro.rumore_datasheet_pa = 0.6;  % [Pa] Tabella 8 (pag.15): RMS noise con
                                    %      pressure environment" (par. 3.5): in LAB.
 
 
-P.baro.fattore_disturbi    = 5;   % [-]  In volo non sei in lab: vento sui fori
+P.baro.fattore_disturbi    = 10;   % [-]  In volo non sei in lab: vento sui fori
                                    %      di sfiato, vibrazioni, transitori termici.
                                    %      x10 e' un margine onesto; potrai misurarlo
                                    %      davvero dai log con analizza_log_reale.m
@@ -64,6 +64,7 @@ P.baro.fattore_disturbi    = 5;   % [-]  In volo non sei in lab: vento sui fori
 
 P.baro.rumore_pa = 2.97; % [Pa] misurato dal banco 
 
+P.baro.rumore_m= 2.97 * 0.083; % [m] prodotto dalla misurazione da banco 
 
 
 P.baro.bias_pa   = 12;        % [Pa] pag.8: "Relative accuracy" Arel = +/-0.12 hPa
@@ -122,9 +123,9 @@ P.gyr.rumore = 0.04;     % [dps] deviazione standard del rumore (misurata, ~0.03
 %% --- LOGICA DI VOLO (soglie della macchina a stati) ---
 P.logica.soglia_decollo   = 30;    % [m/s^2] accel misurata per dichiarare LIFTOFF (~3g)
 P.logica.n_conferme       = 5;     % [-] campioni consecutivi per confermare un evento
-P.logica.quota_min_deploy = 25;    % [m] 
-P.logica.t_min_deploy     = 1.5;   % [s]
-P.logica.t_max_deploy     = 12;    % [s] failsafe
+P.logica.quota_min_deploy = 80;    % [m] 
+P.logica.t_min_deploy     = 5;   % [s]
+P.logica.t_max_deploy     = 8;    % [s] failsafe
 
 %% MERDA PER I RANDOM IN SIMULA SENS
 
