@@ -54,14 +54,36 @@ stato.x=[0;0;0]; % h v e bias
 stato.P=diag([0.5^2,0.1^2, 0.4^2]); %valori lowkey campati per aria 
 x_log=zeros(3,n); % h v e bias
 
+flag=false;
+flag_t=false;
+deploy=false;
+t_deploy=NaN; % resta NaN se la macchina a stati non apre mai il paracadute
 
+
+stato_m.fase='PAD';
+stato_m.x=zeros(3,1);
+stato_m.count=0;
+stato_m.t=0;
 
 for i=1:n
     
     
     stato = kalman(stato,sens.acc(i),sens.baro_h(i),sens.baro_fresh(i),P);
-
     x_log(:,i)=stato.x; %salvo h e v all'interno del x_log (stato.x e' gia' 2x1)
+    stato_m.t=sens.t(i);
+    [stato_m,flag,flag_t,deploy] = macchina_stati(stato_m,stato.x(2),sens.acc(i),stato.x(1),P,deploy,flag_t);
+    
+    
+    if flag_t
+        stato_m.t_start=sens.t(i);
+    end
+    if flag
+    
+    t_deploy=sens.t(i);
+    deploy=true;
+
+    end
+   
     
 end
 
@@ -131,4 +153,8 @@ fprintf('%-14s %10.4f %10.4f %10.4f\n', 'bias [m/s^2]', sens.bias_acc_vero, stat
 fprintf('-----------------------------------\n');
 fprintf('ESITO: apogeo(<0.3s)=%s  bias(<0.02)=%s\n', giud_apo, giud_bias);
 fprintf('===================================\n');
+fprintf('-----------------------------------\n');
+fprintf('CONFRONTO TEMPI APOGEO: \ntempo apogeo kalman:%.4f s\n tempo apogeo macchina a stati:%.4f s\n differenza tra tempi:%.4f ms \n', t_apo_kal, t_deploy,abs(t_apo_kal-t_deploy)*1e3);
+fprintf('===================================\n');
+
 

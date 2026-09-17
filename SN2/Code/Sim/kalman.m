@@ -14,7 +14,7 @@ H=[1 0 0];
 
 R=(P.baro.rumore_m*P.baro.fattore_disturbi)^2;
 
-Q=(B*B')*P.imu.rumore_acc^2 + diag([0 0 1e-4]); %valore piccolo del bias così risulta costante al filtro e la sua incertezza converge sennè non avrei più correzione quando riaggiorno P per il bias e il filtro smetterebbe
+Q=(B*B')*P.imu.rumore_acc^2 + diag([0 0 1e-4]); %valore piccolo del bias così risulta costante al filtro e la sua incertezza converge sennò non avrei più correzione quando riaggiorno P per il bias e il filtro smetterebbe
 
 u= acc_i -P.g; % trovo accelerazione perchè IMU misura forza relativa 
 stato.x= F*stato.x + B*u;

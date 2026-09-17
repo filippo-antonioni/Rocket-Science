@@ -33,10 +33,11 @@ P.curva_spinta = [0 0; reshape(coppie, 2, []).'];          % matrice Nx2 colonna
 P.t_burnout = P.curva_spinta(end,1);                       % [s] 
 
 %% --- AMBIENTE ---
-P.g    = 9.80665;   % [m/s^2]
-P.rho0 = 1.225;     % [kg/m^3] 
-P.p0   = 101325;    % [Pa]
-P.quota_rampa = 0;  % [m] 
+P.g    = 9.80665;      % [m/s^2]
+P.rho0 = 1.225;        % [kg/m^3] 
+P.p0   = 101325;       % [Pa]
+P.quota_rampa = 0;     % [m] 
+P.lunghezza_rampa=1.5; %[m]
 
 %% --- SIMULAZIONE ---
 P.dt_fisica = 0.001;   % [s] passo di integrazione della "verita'" (1 kHz)
