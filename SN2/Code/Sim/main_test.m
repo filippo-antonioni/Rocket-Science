@@ -52,7 +52,7 @@ title('Controllo giroscopio (solo bias + rumore)');
 n=length(sens.acc);
 stato.x=[0;0;0]; % h v e bias
 stato.P=diag([0.5^2,0.1^2, 0.4^2]); %valori lowkey campati per aria 
-log=zeros(3,n); % h v e bias
+x_log=zeros(3,n); % h v e bias
 
 
 
@@ -61,14 +61,15 @@ for i=1:n
     
     stato = kalman(stato,sens.acc(i),sens.baro_h(i),sens.baro_fresh(i),P);
 
-    log(:,i)=stato.x; %salvo h e v all'interno del log (stato.x e' gia' 2x1)
+    x_log(:,i)=stato.x; %salvo h e v all'interno del x_log (stato.x e' gia' 2x1)
     
 end
 
 %% Apogeo: Kalman vs verita' (calcolato PRIMA dei plot, serve per i marker)
-h_kal = log(1,:);                                            % quota stimata
-v_kal = log(2,:);                                            % velocita' stimata
-i_apo_kal = find(v_kal(1:end-1) > 0 & v_kal(2:end) <= 0, 1); % 1o cambio segno +->-
+h_kal = x_log(1,:);                                            % quota stimata
+v_kal = x_log(2,:);                                            % velocita' stimata
+dopo_t_min = sens.t(1:end-1)' >= P.logica.t_min_deploy;       % riga, come v_kal: prima di t_min nessun apogeo e' credibile
+i_apo_kal = find(v_kal(1:end-1) > 0 & v_kal(2:end) <= 0 & dopo_t_min, 1); % 1o cambio segno +->- dopo t_min
 if isempty(i_apo_kal)
     fprintf('Kalman: la velocita'' non incrocia mai lo zero (controlla Q/R o i segni)\n');
     t_apo_kal = NaN; 
@@ -109,7 +110,7 @@ legend('Location','bestoutside');
 
 %% Figura BIAS
 figure;
-plot(sens.t, log(3,:), 'LineWidth',2, 'DisplayName','bias stimato Kalman'); hold on; grid on;
+plot(sens.t, x_log(3,:), 'LineWidth',2, 'DisplayName','bias stimato Kalman'); hold on; grid on;
 yline(sens.bias_acc_vero, 'r--', 'LineWidth',2, 'DisplayName','bias vero');
 xlabel('t [s]'); ylabel('bias accel [m/s^2]');
 title('Kalman — convergenza del bias');

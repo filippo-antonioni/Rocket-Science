@@ -2,9 +2,12 @@ function P = parameters()
 
 
 %% --- RAZZO ---
-P.massa_secca   = 0.347;    % [kg] somma presa da thrustcurve con peso senza prop
-P.massa_prop    = 0.0359;   % [kg]
-P.diametro      = 0.05;    % [m] 
+P.massa_struttura = 0.3234; % [kg] razzo SENZA motore, calcolata da SN2.ork (OpenRocket):
+                            %      tubi+naso+pinne PLA 185 g, paracadute+cord 15 g,
+                            %      elettronica 80 g, batteria 20 g, bulkhead/scudo/carica 32 g.
+                            %      DA CONFERMARE CON LA BILANCIA (batteria ancora stimata)
+                            % massa_secca e massa_prop vengono dal .eng, sotto
+P.diametro     = 0.05;    % [m] 
 P.Cd            = 0.60;    % [-] coeff. di resistenza in salita 
 P.Cd_paracadute = 0.8;     % [-] Cd del paracadute aperto
 P.diam_paracadute = 0.45;  % [m] diametro paracadute
@@ -12,16 +15,18 @@ P.diam_paracadute = 0.45;  % [m] diametro paracadute
 P.area = pi * (P.diametro/2)^2;            % [m^2] sezione frontale
 P.area_paracadute = pi * (P.diam_paracadute/2)^2;
 
-%% --- MOTORE: Estes E12
+%% --- MOTORE: Klima D9 (file ufficiale produttore da thrustcurve.org)
 % Per cambiare motore: scarica il nuovo .eng, sovrascrivi dati_motore.eng, fine.
 cartella = fileparts(mfilename('fullpath'));
 righe = readlines(fullfile(cartella, 'dati_motore.eng'));
 righe = righe(~startsWith(strtrim(righe), ';') & strlength(strtrim(righe)) > 0); 
 
 intestazione = strsplit(strtrim(righe(1)));
-P.motore_nome        = intestazione{1};                    % 'E12'
-P.massa_prop         = str2double(intestazione{5});        % [kg] 
+P.motore_nome        = intestazione{1};                    % 'D9'
+P.massa_prop         = str2double(intestazione{5});        % [kg] 0.0161 propellente
 P.massa_motore_vuoto = str2double(intestazione{6}) - P.massa_prop;  % [kg] involucro che scende col paracadute
+P.massa_secca        = P.massa_struttura + P.massa_motore_vuoto;    % [kg] quello che resta a burnout
+                                                                    %      (flight_sim fa m = massa_secca + m_prop)
 
 coppie = str2num(char(join(righe(2:end), ' ')));           %#ok<ST2NM>
 P.curva_spinta = [0 0; reshape(coppie, 2, []).'];          % matrice Nx2 colonna1 = tempo, colonna2= spinta
@@ -42,7 +47,7 @@ P.t_max     = 60;      % [s] durata massima simulazione a caso
 % (MODE_NORMAL, temp x1, pressione x8 = "High resolution", FILTER_X4,
 % standby 0.5 ms). Ogni valore cita la tabella da cui viene.
 
-P.baro.freq = 40;             % [Hz] Tabella 13 (pag.19): con osrs_p x8 una misura
+P.baro.freq = 38;   %trovato claude facendo girare da banco          % [Hz] Tabella 13 (pag.19): con osrs_p x8 una misura
                               %      dura 19.5-22.5 ms -> Tabella 14: ODR ~44-50 Hz.
                               %      Arrotondo in BASSO (40): nel dubbio simulo un
                               %      sensore un po' peggiore del vero, mai migliore.
@@ -123,8 +128,8 @@ P.gyr.rumore = 0.04;     % [dps] deviazione standard del rumore (misurata, ~0.03
 %% --- LOGICA DI VOLO (soglie della macchina a stati) ---
 P.logica.soglia_decollo   = 30;    % [m/s^2] accel misurata per dichiarare LIFTOFF (~3g)
 P.logica.n_conferme       = 5;     % [-] campioni consecutivi per confermare un evento
-P.logica.quota_min_deploy = 80;    % [m] 
-P.logica.t_min_deploy     = 5;   % [s]
+P.logica.quota_min_deploy = 30;    % [m] 
+P.logica.t_min_deploy     = 1.8;   % [s]
 P.logica.t_max_deploy     = 8;    % [s] failsafe
 
 %% MERDA PER I RANDOM IN SIMULA SENS

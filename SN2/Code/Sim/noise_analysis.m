@@ -9,7 +9,7 @@ clc
 %% Caricamento dati 
 percorso = "C:\Filippo\Rocket\Rocket-Science\SN2\Code\Avionics\logs\device-monitor-260813-153005.log"; % percorso in cui si trova il file log da cui prendere i dati 
 
-righe = readlines("C:\Filippo\Rocket\Rocket-Science\SN2\Code\Avionics\logs\device-monitor-260813-153005.log"); 
+righe = readlines(percorso);
 dati= [];
 
 for i = 1: numel(righe)
@@ -57,7 +57,12 @@ noise_alt= std(alt); % Deviazione standard quota per il calcolo del rumore
 noise_acc = std(acc); % Deviazione standard accelerazioni su tre assi 
 noise_gyr = std(gyr); % Deviazione standrd giroscopio
 
-bias_acc = mean(acc(:,3)) - 9.80665; % Bias asse Z: a riposo Z legge +9.81 (1g), NON 0. Il bias e' lo scostamento da 9.81
+% Bias accel: a riposo il MODULO del vettore medio deve valere 1g (9.81).
+% Uso il modulo e non solo l'asse Z perche' la scheda non e' perfettamente in bolla:
+% un'inclinazione sposta un po' di g da Z verso X/Y e falserebbe la stima.
+acc_media = mean(acc);                              % [ax ay az] medi
+bias_acc  = norm(acc_media) - 9.80665;              % scostamento del modulo da 1g
+inclinazione_deg = acosd(acc_media(3)/norm(acc_media)); % quanto la scheda e' fuori bolla
 bias_gyr= mean (gyr); % Bias del giroscopio sui 3 assi
 
 
@@ -132,7 +137,8 @@ fprintf('  rumore quota (std):  %.3f m   (= %.2f Pa)\n', noise_alt, std(P));
 fprintf('------------------------------------------------------------\n');
 fprintf('ACCELEROMETRO [m/s^2]         X          Y          Z\n');
 fprintf('  rumore (std):         %9.4f  %9.4f  %9.4f\n', noise_acc(1), noise_acc(2), noise_acc(3));
-fprintf('  bias asse Z:          %.4f m/s^2\n', bias_acc);
+fprintf('  bias (|a| - g):       %.4f m/s^2\n', bias_acc);
+fprintf('  inclinazione scheda:  %.2f gradi\n', inclinazione_deg);
 fprintf('------------------------------------------------------------\n');
 fprintf('GIROSCOPIO [dps]             X          Y          Z\n');
 fprintf('  rumore (std):         %9.4f  %9.4f  %9.4f\n', noise_gyr(1), noise_gyr(2), noise_gyr(3));
@@ -145,4 +151,3 @@ fprintf('============================================================\n');
 
 
 
-Par= parametri;
