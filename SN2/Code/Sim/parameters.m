@@ -42,6 +42,8 @@ P.lunghezza_rampa=1.5; %[m]
 %% --- SIMULAZIONE ---
 P.dt_fisica = 0.001;   % [s] passo di integrazione della "verita'" (1 kHz)
 P.t_max     = 60;      % [s] durata massima simulazione a caso
+P.t_a_terra = 5;       % [s] quanto simulare il razzo fermo a terra dopo l'atterraggio
+                       %     (serve alla macchina a stati per vedere LANDED: ci mette ~2.5 s)
 
 %% --- SENSORI: barometro BMP280 ---
 % Fonte: datasheet Bosch BST-BMP280-DS001 rev 1.26 + impostazioni in main.cpp
@@ -132,7 +134,7 @@ P.logica.n_conferme       = 5;     % [-] campioni consecutivi per confermare un 
 P.logica.quota_min_deploy = 30;    % [m] 
 P.logica.t_min_deploy     = 1.8;   % [s]
 P.logica.t_max_deploy     = 8;    % [s] failsafe
-
+P.logica.scarti           =5;
 %% MERDA PER I RANDOM IN SIMULA SENS
 
 P.seed=99; %completamente a caso

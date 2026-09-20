@@ -6,8 +6,10 @@ function flight = flight_sim(P)
 % incertezze maggiori e l'output sarebbe stato a passo variabile va bene
 % anche Eulero indietro, oltre che ode45 sull esp non esiste pd 
 
-dt = P.dt_fisica; 
-n = round(P.t_max/ dt); 
+dt = P.dt_fisica;
+n = round(P.t_max/ dt);
+n_terra = round(P.t_a_terra / dt); % [campioni] tempo da simulare a terra dopo l'atterraggio: secondi / passo
+i_atterraggio = NaN;               % indice del contatto col suolo (variabile normale: riparte da NaN a ogni chiamata)
 
 % prealloco per risparmiare memoria tanto so quanto saranno lunghi i
 % vettori 
@@ -107,11 +109,22 @@ end
 
 
 % atterraggio
-if h(i+1)<0 && ~isnan(i_apogeo)  
+% al contatto blocco il razzo al suolo (quota e velocita' a zero): da qui in poi
+% il controllo "rampa" in cima al ciclo lo tiene fermo a terra
+if isnan(i_atterraggio) && h(i+1)<=0 && ~isnan(i_apogeo)
 
-    n=i+1;
+    h(i+1) = 0;
+    v(i+1) = 0;
+    i_atterraggio = i+1;
+
+end
+
+% dopo P.t_a_terra secondi fermo a terra chiudo la simulazione
+if ~isnan(i_atterraggio) && (i+1 - i_atterraggio) >= n_terra
+
+    n = i+1;
     break
-    
+
 end
 
 
@@ -129,6 +142,7 @@ flight.t_burnout=t(i_burnout);
 flight.t_apogeo=t(i_apogeo);
 flight.h_apogeo=h(i_apogeo);
 flight.v_max= max(flight.v);
+if isnan(i_atterraggio), flight.t_atterraggio=NaN; else, flight.t_atterraggio=t(i_atterraggio); end
 flight.P=P;
 
 
