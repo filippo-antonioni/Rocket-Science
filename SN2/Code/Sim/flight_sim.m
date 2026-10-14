@@ -4,7 +4,7 @@ function flight = flight_sim(P)
 % mi serve un metodo che non sia a passo variabile, es Eulero indietro.
 % Avrei potuto usare RK che è più accurato ma visto che ci sono già
 % incertezze maggiori e l'output sarebbe stato a passo variabile va bene
-% anche Eulero indietro, oltre che ode45 sull esp non esiste pd 
+% anche Eulero indietro, oltre che ode45 sull esp non esiste
 
 dt = P.dt_fisica;
 n = round(P.t_max/ dt);
