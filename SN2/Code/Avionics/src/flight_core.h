@@ -18,7 +18,7 @@ struct Parametri {
     double quotaMinDeploy = 30.0;
     double tempoMinDeploy = 1.8;
     double tempoMaxDeploy = 8.0;
-};
+};  
 
 enum class Correzione { Assente, Scartata, Accettata, ErroreNumerico };
 
