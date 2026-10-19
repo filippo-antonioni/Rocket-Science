@@ -10,7 +10,7 @@
 namespace cfg {
 constexpr int sda = 8, scl = 9;
 constexpr int ledDeploy = 4; // LED esterno con resistenza in serie
-constexpr int servoPin = 18;
+constexpr int servoPin = 17;
 constexpr int servoChiuso = 130, servoAperto = 90;
 constexpr int asse = 0; // 0=X, 1=Y, 2=Z
 constexpr int segno = -1;

@@ -1,0 +1,54 @@
+DIAGNOSI SERVO - ESP32-S3, Arduino 2.0.17 / PlatformIO espressif32 6.10.0
+
+Estrarre la cartella DiagnosiServo dentro la propria cartella Avionics.
+Il diagnostico ha il suo platformio.ini. Non sostituire file del progetto principale.
+Il caricamento sostituisce il firmware nella ESP; non formatta il filesystem e non scrive log.
+La mappa delle partizioni e' identica al progetto Avionics fornito.
+
+COLLEGAMENTO, SEMPRE A USB SCOLLEGATA
+- Servo libero dal fairing e dal meccanismo.
+- Arancione servo -> IO17.
+- Aggiungere un ponticello IO17 -> IO16. IO16 e' configurato come ingresso.
+  Se IO17 e' gia' occupato, usare una fila libera della breadboard per unire
+  IO17, IO16 e arancione: sono tutti e tre lo STESSO segnale.
+- Marrone servo -> GND comune, come nella prova precedente.
+- Rosso servo -> alimentazione della prova precedente, senza cambiarla.
+  Questo test NON verifica che il pin 5V IN della propria scheda eroghi 5 V
+  o corrente sufficiente. Non spostare il rosso su 3V3.
+- Non collegare MAI IO16 a 5V o al filo rosso. Riceve solo IO17, segnale 3,3 V.
+- Non modificare batteria/step-up e non collegarli durante questa prova.
+
+DA POWERSHELL, NELLA CARTELLA AVIONICS
+Chiudere il vecchio menu con 0 e chiudere il Monitor seriale.
+Collegare USB-UART e lanciare:
+
+& "$env:USERPROFILE\.platformio\penv\Scripts\python.exe" .\DiagnosiServo\prova.py --port COM6
+
+Compila, carica, e legge automaticamente. Non digitare comandi 5/6.
+Attende 10 secondi dall'avvio, alterna 130/90 gradi ogni 3 secondi per 60 secondi,
+poi disattiva gli impulsi e stampa TEST_FINITO. L'alimentazione del servo resta presente.
+Se ESP si spegne/riavvia, USB sparisce o servo spinge contro un finecorsa, scollegare USB.
+
+COME LEGGERE
+- feedback=PASS: IO16 ha MISURATO gli impulsi usciti da IO17 tramite il ponticello.
+  Circa 1872 us a 130 gradi, 1450 us a 90 gradi; periodo circa 20000 us.
+  Conferma il segnale in quel punto, non tensione/corrente al servo, movimento,
+  integrita' del suo cavo o compatibilita' della sua soglia d'ingresso.
+- feedback=NO_SIGNAL: nessun impulso completo rilevato su IO16.
+  Controllare prima il ponticello IO17-IO16. Non attribuire automaticamente il problema al servo.
+- feedback=CHECK: impulso/periodo fuori dalla tolleranza del diagnostico.
+- ERR PWM_TIMER / PWM_CHANNEL / PWM_WRITE: errore esplicito del driver.
+- hz=50 indica la frequenza configurata; high_us e low_us sono misure effettuate su IO16.
+
+Il diagnostico usa direttamente il driver LEDC ufficiale, senza ESP32Servo,
+sensori, Kalman, macchina a stati, flash o PSRAM. Non dipende da un timer software.
+Ogni nuova alimentazione/reset ripete la sequenza automatica.
+
+DOPO
+Scollegare USB, rimuovere ponticello IO17-IO16, e ricaricare banco_servo_psram
+dal menu originale, opzione 2. Il progetto principale resta nei suoi file originali.
+Non usare il diagnostico per il volo.
+
+Verifica locale: test logici con driver simulato; non compilato con toolchain ESP32
+ne' misurato su hardware reale in questa sessione.
+API di riferimento: https://docs.espressif.com/projects/esp-idf/en/v4.4.7/esp32s3/api-reference/peripherals/ledc.html
