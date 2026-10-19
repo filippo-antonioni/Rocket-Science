@@ -12,6 +12,7 @@ void pinMode(int,int);void digitalWrite(int,int);int digitalRead(int);
 struct SerialMock {
  void begin(int);int available();int read();size_t write(const uint8_t*,size_t);
  void println(const char*);
+ void flush();
  int printf(const char*,...) __attribute__((format(printf,2,3)));
 };
 extern SerialMock Serial;

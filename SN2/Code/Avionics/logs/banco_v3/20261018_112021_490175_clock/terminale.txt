@@ -1,0 +1,114 @@
+INFO revision=3 firmware=BANCO flash_bytes=16777216 psram_bytes=0 rgb_pin=48 servo_enabled=0
+INFO fs_mounted=1 total=5177344 used=737280 free=4440064
+STATUS armed=0 phase=LANDED deploy=1 log_active=0 log_ok=1 rows=3500 dropped=0 max_dt_us=32015 max_write_us=23773 max_flush_us=188910 max_queue=16 late=1 max_core_us=2871 predeploy_max_dt_us=11004 predeploy_late=0 mode=LEGACY core=BASE clock=MODEL
+[1014845][E][vfs_api.cpp:105] open(): /littlefs/log0007.bin does not exist, no permits for creation
+OK RUN NOMINALE file=/log0007.bin mode=BATCH core=BASE clock=MODEL
+EVENT t=1040 wall_us=1053554 phase=BOOST h=0.03 v=1.25 deploy=0 dt_real_us=10000
+EVENT t=3040 wall_us=3053554 phase=COAST h=51.99 v=49.16 deploy=0 dt_real_us=10000
+EVENT t=7910 wall_us=7928554 phase=DESCENT h=171.37 v=-0.48 deploy=1 dt_real_us=10000
+EVENT t=16710 wall_us=16759554 phase=LANDED h=-32.03 v=0.13 deploy=1 dt_real_us=10000
+RESULT NOMINALE algorithm=PASS accuracy=PASS landing=PASS log=PASS timing=CHECK deploy_ms=7910 deploy_wall_us=7928686 count=1 phase=LANDED file=/log0007.bin mode=BATCH core=BASE clock=MODEL max_dt_us=23873 predeploy_max_dt_us=10998 late=2 predeploy_late=0 max_core_us=20929 max_write_us=27703 max_flush_us=28949 max_queue=2 rows=3500 dropped=0 h_error_deploy=0.028 v_error_deploy=0.094 max_pre_h_error=0.225 max_pre_v_error=0.436 land_ms=16710 land_h_error=-32.025 early_landing=0 max_imu_gap_us=0 max_baro_gap_us=20000 numerical=0
+INFO revision=3 firmware=BANCO flash_bytes=16777216 psram_bytes=0 rgb_pin=48 servo_enabled=0
+INFO fs_mounted=1 total=5177344 used=1048576 free=4128768
+STATUS armed=0 phase=LANDED deploy=1 log_active=0 log_ok=1 rows=3500 dropped=0 max_dt_us=23873 max_write_us=27703 max_flush_us=28949 max_queue=2 late=2 max_core_us=20929 predeploy_max_dt_us=10998 predeploy_late=0 mode=BATCH core=BASE clock=MODEL
+BEGIN /log0007.bin 308048
+END
+INFO revision=3 firmware=BANCO flash_bytes=16777216 psram_bytes=0 rgb_pin=48 servo_enabled=0
+INFO fs_mounted=1 total=5177344 used=1048576 free=4128768
+STATUS armed=0 phase=LANDED deploy=1 log_active=0 log_ok=1 rows=3500 dropped=0 max_dt_us=23873 max_write_us=27703 max_flush_us=28949 max_queue=2 late=2 max_core_us=20929 predeploy_max_dt_us=10998 predeploy_late=0 mode=BATCH core=BASE clock=MODEL
+OK DELETE
+INFO revision=3 firmware=BANCO flash_bytes=16777216 psram_bytes=0 rgb_pin=48 servo_enabled=0
+INFO fs_mounted=1 total=5177344 used=737280 free=4440064
+STATUS armed=0 phase=LANDED deploy=1 log_active=0 log_ok=1 rows=3500 dropped=0 max_dt_us=23873 max_write_us=27703 max_flush_us=28949 max_queue=2 late=2 max_core_us=20929 predeploy_max_dt_us=10998 predeploy_late=0 mode=BATCH core=BASE clock=MODEL
+[1078175][E][vfs_api.cpp:105] open(): /littlefs/log0007.bin does not exist, no permits for creation
+OK RUN NOMINALE file=/log0007.bin mode=BATCH core=BASE clock=WALL
+EVENT t=1044 wall_us=1044284 phase=BOOST h=0.03 v=1.25 deploy=0 dt_real_us=10000
+EVENT t=3044 wall_us=3044284 phase=COAST h=52.20 v=49.30 deploy=0 dt_real_us=10000
+EVENT t=7900 wall_us=7900284 phase=DESCENT h=171.36 v=-0.42 deploy=1 dt_real_us=10000
+EVENT t=16706 wall_us=16706284 phase=LANDED h=-31.98 v=0.09 deploy=1 dt_real_us=10000
+RESULT NOMINALE algorithm=PASS accuracy=PASS landing=PASS log=PASS timing=CHECK deploy_ms=7900 deploy_wall_us=7900668 count=1 phase=LANDED file=/log0007.bin mode=BATCH core=BASE clock=WALL max_dt_us=32211 predeploy_max_dt_us=11003 late=1 predeploy_late=0 max_core_us=5182 max_write_us=23499 max_flush_us=187869 max_queue=16 rows=3491 dropped=0 h_error_deploy=0.015 v_error_deploy=0.050 max_pre_h_error=0.119 max_pre_v_error=0.252 land_ms=16706 land_h_error=-31.981 early_landing=0 max_imu_gap_us=0 max_baro_gap_us=22028 numerical=0
+INFO revision=3 firmware=BANCO flash_bytes=16777216 psram_bytes=0 rgb_pin=48 servo_enabled=0
+INFO fs_mounted=1 total=5177344 used=1048576 free=4128768
+STATUS armed=0 phase=LANDED deploy=1 log_active=0 log_ok=1 rows=3491 dropped=0 max_dt_us=32211 max_write_us=23499 max_flush_us=187869 max_queue=16 late=1 max_core_us=5182 predeploy_max_dt_us=11003 predeploy_late=0 mode=BATCH core=BASE clock=WALL
+BEGIN /log0007.bin 307256
+END
+INFO revision=3 firmware=BANCO flash_bytes=16777216 psram_bytes=0 rgb_pin=48 servo_enabled=0
+INFO fs_mounted=1 total=5177344 used=1048576 free=4128768
+STATUS armed=0 phase=LANDED deploy=1 log_active=0 log_ok=1 rows=3491 dropped=0 max_dt_us=32211 max_write_us=23499 max_flush_us=187869 max_queue=16 late=1 max_core_us=5182 predeploy_max_dt_us=11003 predeploy_late=0 mode=BATCH core=BASE clock=WALL
+OK DELETE
+INFO revision=3 firmware=BANCO flash_bytes=16777216 psram_bytes=0 rgb_pin=48 servo_enabled=0
+INFO fs_mounted=1 total=5177344 used=737280 free=4440064
+STATUS armed=0 phase=LANDED deploy=1 log_active=0 log_ok=1 rows=3491 dropped=0 max_dt_us=32211 max_write_us=23499 max_flush_us=187869 max_queue=16 late=1 max_core_us=5182 predeploy_max_dt_us=11003 predeploy_late=0 mode=BATCH core=BASE clock=WALL
+[1140826][E][vfs_api.cpp:105] open(): /littlefs/log0007.bin does not exist, no permits for creation
+OK RUN RUMORE file=/log0007.bin mode=BATCH core=BASE clock=MODEL
+EVENT t=1040 wall_us=1054574 phase=BOOST h=0.06 v=1.33 deploy=0 dt_real_us=10000
+EVENT t=3040 wall_us=3058574 phase=COAST h=52.03 v=49.20 deploy=0 dt_real_us=10000
+EVENT t=7910 wall_us=7934574 phase=DESCENT h=171.37 v=-0.48 deploy=1 dt_real_us=10000
+EVENT t=16710 wall_us=16742574 phase=LANDED h=-32.01 v=0.13 deploy=1 dt_real_us=10000
+RESULT RUMORE algorithm=PASS accuracy=PASS landing=PASS log=PASS timing=PASS deploy_ms=7910 deploy_wall_us=7934770 count=1 phase=LANDED file=/log0007.bin mode=BATCH core=BASE clock=MODEL max_dt_us=11130 predeploy_max_dt_us=11000 late=0 predeploy_late=0 max_core_us=5052 max_write_us=21140 max_flush_us=8974 max_queue=1 rows=3500 dropped=0 h_error_deploy=0.022 v_error_deploy=0.089 max_pre_h_error=0.220 max_pre_v_error=0.421 land_ms=16710 land_h_error=-32.014 early_landing=0 max_imu_gap_us=0 max_baro_gap_us=20000 numerical=0
+INFO revision=3 firmware=BANCO flash_bytes=16777216 psram_bytes=0 rgb_pin=48 servo_enabled=0
+INFO fs_mounted=1 total=5177344 used=1048576 free=4128768
+STATUS armed=0 phase=LANDED deploy=1 log_active=0 log_ok=1 rows=3500 dropped=0 max_dt_us=11130 max_write_us=21140 max_flush_us=8974 max_queue=1 late=0 max_core_us=5052 predeploy_max_dt_us=11000 predeploy_late=0 mode=BATCH core=BASE clock=MODEL
+BEGIN /log0007.bin 308048
+END
+INFO revision=3 firmware=BANCO flash_bytes=16777216 psram_bytes=0 rgb_pin=48 servo_enabled=0
+INFO fs_mounted=1 total=5177344 used=1048576 free=4128768
+STATUS armed=0 phase=LANDED deploy=1 log_active=0 log_ok=1 rows=3500 dropped=0 max_dt_us=11130 max_write_us=21140 max_flush_us=8974 max_queue=1 late=0 max_core_us=5052 predeploy_max_dt_us=11000 predeploy_late=0 mode=BATCH core=BASE clock=MODEL
+OK DELETE
+INFO revision=3 firmware=BANCO flash_bytes=16777216 psram_bytes=0 rgb_pin=48 servo_enabled=0
+INFO fs_mounted=1 total=5177344 used=737280 free=4440064
+STATUS armed=0 phase=LANDED deploy=1 log_active=0 log_ok=1 rows=3500 dropped=0 max_dt_us=11130 max_write_us=21140 max_flush_us=8974 max_queue=1 late=0 max_core_us=5052 predeploy_max_dt_us=11000 predeploy_late=0 mode=BATCH core=BASE clock=MODEL
+[1203934][E][vfs_api.cpp:105] open(): /littlefs/log0007.bin does not exist, no permits for creation
+OK RUN RUMORE file=/log0007.bin mode=BATCH core=BASE clock=WALL
+EVENT t=1042 wall_us=1042998 phase=BOOST h=0.07 v=1.33 deploy=0 dt_real_us=10000
+EVENT t=3046 wall_us=3046998 phase=COAST h=52.37 v=49.39 deploy=0 dt_real_us=10000
+EVENT t=7896 wall_us=7896998 phase=DESCENT h=171.32 v=-0.44 deploy=1 dt_real_us=10000
+EVENT t=16703 wall_us=16703998 phase=LANDED h=-31.53 v=0.32 deploy=1 dt_real_us=10000
+RESULT RUMORE algorithm=PASS accuracy=PASS landing=PASS log=PASS timing=CHECK deploy_ms=7896 deploy_wall_us=7897435 count=1 phase=LANDED file=/log0007.bin mode=BATCH core=BASE clock=WALL max_dt_us=33366 predeploy_max_dt_us=11002 late=59 predeploy_late=0 max_core_us=23882 max_write_us=74664 max_flush_us=31328 max_queue=3 rows=3399 dropped=0 h_error_deploy=-0.028 v_error_deploy=-0.008 max_pre_h_error=0.177 max_pre_v_error=0.290 land_ms=16703 land_h_error=-31.531 early_landing=0 max_imu_gap_us=0 max_baro_gap_us=22738 numerical=0
+INFO revision=3 firmware=BANCO flash_bytes=16777216 psram_bytes=0 rgb_pin=48 servo_enabled=0
+INFO fs_mounted=1 total=5177344 used=1040384 free=4136960
+STATUS armed=0 phase=LANDED deploy=1 log_active=0 log_ok=1 rows=3399 dropped=0 max_dt_us=33366 max_write_us=74664 max_flush_us=31328 max_queue=3 late=59 max_core_us=23882 predeploy_max_dt_us=11002 predeploy_late=0 mode=BATCH core=BASE clock=WALL
+BEGIN /log0007.bin 299160
+END
+INFO revision=3 firmware=BANCO flash_bytes=16777216 psram_bytes=0 rgb_pin=48 servo_enabled=0
+INFO fs_mounted=1 total=5177344 used=1040384 free=4136960
+STATUS armed=0 phase=LANDED deploy=1 log_active=0 log_ok=1 rows=3399 dropped=0 max_dt_us=33366 max_write_us=74664 max_flush_us=31328 max_queue=3 late=59 max_core_us=23882 predeploy_max_dt_us=11002 predeploy_late=0 mode=BATCH core=BASE clock=WALL
+OK DELETE
+INFO revision=3 firmware=BANCO flash_bytes=16777216 psram_bytes=0 rgb_pin=48 servo_enabled=0
+INFO fs_mounted=1 total=5177344 used=737280 free=4440064
+STATUS armed=0 phase=LANDED deploy=1 log_active=0 log_ok=1 rows=3399 dropped=0 max_dt_us=33366 max_write_us=74664 max_flush_us=31328 max_queue=3 late=59 max_core_us=23882 predeploy_max_dt_us=11002 predeploy_late=0 mode=BATCH core=BASE clock=WALL
+[1266490][E][vfs_api.cpp:105] open(): /littlefs/log0007.bin does not exist, no permits for creation
+OK RUN BUCO_BARO file=/log0007.bin mode=BATCH core=BASE clock=MODEL
+EVENT t=1040 wall_us=1097533 phase=BOOST h=0.03 v=1.25 deploy=0 dt_real_us=10000
+EVENT t=3040 wall_us=3186533 phase=COAST h=51.99 v=49.16 deploy=0 dt_real_us=10000
+EVENT t=7910 wall_us=8290533 phase=DESCENT h=171.37 v=-0.49 deploy=1 dt_real_us=10000
+EVENT t=16710 wall_us=17486533 phase=LANDED h=-31.95 v=0.16 deploy=1 dt_real_us=10000
+RESULT BUCO_BARO algorithm=PASS accuracy=PASS landing=PASS log=PASS timing=CHECK deploy_ms=7910 deploy_wall_us=8290673 count=1 phase=LANDED file=/log0007.bin mode=BATCH core=BASE clock=MODEL max_dt_us=36629 predeploy_max_dt_us=34839 late=83 predeploy_late=19 max_core_us=25898 max_write_us=72650 max_flush_us=189602 max_queue=17 rows=3500 dropped=0 h_error_deploy=0.023 v_error_deploy=0.083 max_pre_h_error=0.611 max_pre_v_error=0.437 land_ms=16710 land_h_error=-31.951 early_landing=0 max_imu_gap_us=0 max_baro_gap_us=1010000 numerical=0
+INFO revision=3 firmware=BANCO flash_bytes=16777216 psram_bytes=0 rgb_pin=48 servo_enabled=0
+INFO fs_mounted=1 total=5177344 used=1048576 free=4128768
+STATUS armed=0 phase=LANDED deploy=1 log_active=0 log_ok=1 rows=3500 dropped=0 max_dt_us=36629 max_write_us=72650 max_flush_us=189602 max_queue=17 late=83 max_core_us=25898 predeploy_max_dt_us=34839 predeploy_late=19 mode=BATCH core=BASE clock=MODEL
+BEGIN /log0007.bin 308048
+END
+INFO revision=3 firmware=BANCO flash_bytes=16777216 psram_bytes=0 rgb_pin=48 servo_enabled=0
+INFO fs_mounted=1 total=5177344 used=1048576 free=4128768
+STATUS armed=0 phase=LANDED deploy=1 log_active=0 log_ok=1 rows=3500 dropped=0 max_dt_us=36629 max_write_us=72650 max_flush_us=189602 max_queue=17 late=83 max_core_us=25898 predeploy_max_dt_us=34839 predeploy_late=19 mode=BATCH core=BASE clock=MODEL
+OK DELETE
+INFO revision=3 firmware=BANCO flash_bytes=16777216 psram_bytes=0 rgb_pin=48 servo_enabled=0
+INFO fs_mounted=1 total=5177344 used=737280 free=4440064
+STATUS armed=0 phase=LANDED deploy=1 log_active=0 log_ok=1 rows=3500 dropped=0 max_dt_us=36629 max_write_us=72650 max_flush_us=189602 max_queue=17 late=83 max_core_us=25898 predeploy_max_dt_us=34839 predeploy_late=19 mode=BATCH core=BASE clock=MODEL
+[1330956][E][vfs_api.cpp:105] open(): /littlefs/log0007.bin does not exist, no permits for creation
+OK RUN BUCO_BARO file=/log0007.bin mode=BATCH core=BASE clock=WALL
+EVENT t=1076 wall_us=1076993 phase=BOOST h=0.08 v=2.00 deploy=0 dt_real_us=10000
+EVENT t=3071 wall_us=3071993 phase=COAST h=53.58 v=49.24 deploy=0 dt_real_us=10000
+EVENT t=7896 wall_us=7896993 phase=DESCENT h=171.33 v=-0.46 deploy=1 dt_real_us=10000
+EVENT t=16714 wall_us=16714993 phase=LANDED h=-31.84 v=0.18 deploy=1 dt_real_us=10000
+RESULT BUCO_BARO algorithm=PASS accuracy=PASS landing=PASS log=PASS timing=CHECK deploy_ms=7896 deploy_wall_us=7897347 count=1 phase=LANDED file=/log0007.bin mode=BATCH core=BASE clock=WALL max_dt_us=39002 predeploy_max_dt_us=39002 late=78 predeploy_late=17 max_core_us=25096 max_write_us=64693 max_flush_us=28300 max_queue=3 rows=3358 dropped=0 h_error_deploy=-0.022 v_error_deploy=-0.028 max_pre_h_error=0.059 max_pre_v_error=0.100 land_ms=16714 land_h_error=-31.839 early_landing=0 max_imu_gap_us=0 max_baro_gap_us=1015000 numerical=0
+INFO revision=3 firmware=BANCO flash_bytes=16777216 psram_bytes=0 rgb_pin=48 servo_enabled=0
+INFO fs_mounted=1 total=5177344 used=1036288 free=4141056
+STATUS armed=0 phase=LANDED deploy=1 log_active=0 log_ok=1 rows=3358 dropped=0 max_dt_us=39002 max_write_us=64693 max_flush_us=28300 max_queue=3 late=78 max_core_us=25096 predeploy_max_dt_us=39002 predeploy_late=17 mode=BATCH core=BASE clock=WALL
+BEGIN /log0007.bin 295552
+END
+INFO revision=3 firmware=BANCO flash_bytes=16777216 psram_bytes=0 rgb_pin=48 servo_enabled=0
+INFO fs_mounted=1 total=5177344 used=1036288 free=4141056
+STATUS armed=0 phase=LANDED deploy=1 log_active=0 log_ok=1 rows=3358 dropped=0 max_dt_us=39002 max_write_us=64693 max_flush_us=28300 max_queue=3 late=78 max_core_us=25096 predeploy_max_dt_us=39002 predeploy_late=17 mode=BATCH core=BASE clock=WALL
+OK DELETE

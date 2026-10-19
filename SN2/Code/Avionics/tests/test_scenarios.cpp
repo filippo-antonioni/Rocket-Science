@@ -1,6 +1,6 @@
-#include "../src/flight_core.h"
-#include "../src/scenarios.h"
-#include "../src/log_format.h"
+#include "../firmware/banco/flight_core.h"
+#include "../firmware/banco/scenarios.h"
+#include "../firmware/banco/log_format.h"
 #include <cassert>
 #include <iostream>
 int main() {

@@ -1,0 +1,122 @@
+INFO revision=4 firmware=BANCO flash_bytes=16777216 psram_bytes=8386247 rgb_pin=48 servo_enabled=0
+INFO fs_mounted=1 total=5177344 used=737280 free=4440064
+INFO psram_free=6243711 psram_largest=6160372 ram_buffer_bytes=2097152 ram_capacity_records=23831 ram_test_ok=1
+STATUS armed=0 phase=PAD deploy=0 log_active=0 log_ok=1 rows=0 dropped=0 max_dt_us=0 max_write_us=0 max_flush_us=0 max_queue=0 late=0 max_core_us=0 predeploy_max_dt_us=0 predeploy_late=0 mode=LEGACY core=BASE clock=MODEL ram_records=0 ram_pending=0 flash_ops_capture=0 save_ms=0 log_error=NONE
+RAMTEST in corso: controllo lettura/scrittura 2 MiB
+OK RAMTEST bytes=2097152 patterns=4
+INFO revision=4 firmware=BANCO flash_bytes=16777216 psram_bytes=8386247 rgb_pin=48 servo_enabled=0
+INFO fs_mounted=1 total=5177344 used=737280 free=4440064
+INFO psram_free=6243711 psram_largest=6160372 ram_buffer_bytes=2097152 ram_capacity_records=23831 ram_test_ok=1
+STATUS armed=0 phase=PAD deploy=0 log_active=0 log_ok=1 rows=0 dropped=0 max_dt_us=0 max_write_us=0 max_flush_us=0 max_queue=0 late=0 max_core_us=0 predeploy_max_dt_us=0 predeploy_late=0 mode=LEGACY core=BASE clock=MODEL ram_records=0 ram_pending=0 flash_ops_capture=0 save_ms=0 log_error=NONE
+OK RUN RUMORE file=- mode=OFF core=BASE clock=MODEL
+EVENT t=1040 wall_us=1050158 phase=BOOST h=0.06 v=1.33 deploy=0 dt_real_us=10000
+EVENT t=3040 wall_us=3050158 phase=COAST h=52.03 v=49.20 deploy=0 dt_real_us=10000
+EVENT t=7910 wall_us=7920158 phase=DESCENT h=171.37 v=-0.48 deploy=1 dt_real_us=10000
+EVENT t=16710 wall_us=16720158 phase=LANDED h=-32.01 v=0.13 deploy=1 dt_real_us=10000
+RESULT RUMORE algorithm=PASS accuracy=PASS landing=PASS log=SKIP timing=PASS deploy_ms=7910 deploy_wall_us=7920335 count=1 phase=LANDED file=- mode=OFF core=BASE clock=MODEL max_dt_us=10158 predeploy_max_dt_us=10158 late=0 predeploy_late=0 max_core_us=368 max_write_us=0 max_flush_us=0 max_queue=0 rows=0 dropped=0 h_error_deploy=0.022 v_error_deploy=0.089 max_pre_h_error=0.220 max_pre_v_error=0.421 land_ms=16710 land_h_error=-32.014 early_landing=0 max_imu_gap_us=0 max_baro_gap_us=20000 numerical=0 ram_records=0 ram_pending=0 flash_ops_capture=0 save_ms=0 log_error=NONE
+INFO revision=4 firmware=BANCO flash_bytes=16777216 psram_bytes=8386247 rgb_pin=48 servo_enabled=0
+INFO fs_mounted=1 total=5177344 used=737280 free=4440064
+INFO psram_free=6243711 psram_largest=6160372 ram_buffer_bytes=2097152 ram_capacity_records=23831 ram_test_ok=1
+STATUS armed=0 phase=LANDED deploy=1 log_active=0 log_ok=1 rows=0 dropped=0 max_dt_us=10158 max_write_us=0 max_flush_us=0 max_queue=0 late=0 max_core_us=368 predeploy_max_dt_us=10158 predeploy_late=0 mode=OFF core=BASE clock=MODEL ram_records=0 ram_pending=0 flash_ops_capture=0 save_ms=0 log_error=NONE
+[159331][E][vfs_api.cpp:105] open(): /littlefs/log0007.bin does not exist, no permits for creation
+OK RUN RUMORE file=/log0007.bin mode=RAM core=BASE clock=MODEL
+EVENT t=1040 wall_us=1050589 phase=BOOST h=0.06 v=1.33 deploy=0 dt_real_us=10000
+EVENT t=3040 wall_us=3050589 phase=COAST h=52.03 v=49.20 deploy=0 dt_real_us=10000
+EVENT t=7910 wall_us=7920589 phase=DESCENT h=171.37 v=-0.48 deploy=1 dt_real_us=10000
+EVENT t=16710 wall_us=16720589 phase=LANDED h=-32.01 v=0.13 deploy=1 dt_real_us=10000
+SAVING RAM: acquisizione terminata, non premere RESET
+SAVE_DONE ok=1 ram_pending=0 file=/log0007.bin
+RESULT RUMORE algorithm=PASS accuracy=PASS landing=PASS log=PASS timing=PASS deploy_ms=7910 deploy_wall_us=7920778 count=1 phase=LANDED file=/log0007.bin mode=RAM core=BASE clock=MODEL max_dt_us=10589 predeploy_max_dt_us=10589 late=0 predeploy_late=0 max_core_us=372 max_write_us=84274 max_flush_us=2765 max_queue=0 rows=3500 dropped=0 h_error_deploy=0.022 v_error_deploy=0.089 max_pre_h_error=0.220 max_pre_v_error=0.421 land_ms=16710 land_h_error=-32.014 early_landing=0 max_imu_gap_us=0 max_baro_gap_us=20000 numerical=0 ram_records=3500 ram_pending=0 flash_ops_capture=0 save_ms=2631 log_error=NONE
+INFO revision=4 firmware=BANCO flash_bytes=16777216 psram_bytes=8386247 rgb_pin=48 servo_enabled=0
+INFO fs_mounted=1 total=5177344 used=1048576 free=4128768
+INFO psram_free=6243711 psram_largest=6160372 ram_buffer_bytes=2097152 ram_capacity_records=23831 ram_test_ok=1
+STATUS armed=0 phase=LANDED deploy=1 log_active=0 log_ok=1 rows=3500 dropped=0 max_dt_us=10589 max_write_us=84274 max_flush_us=2765 max_queue=0 late=0 max_core_us=372 predeploy_max_dt_us=10589 predeploy_late=0 mode=RAM core=BASE clock=MODEL ram_records=3500 ram_pending=0 flash_ops_capture=0 save_ms=2631 log_error=NONE
+BEGIN /log0007.bin 308048
+END
+INFO revision=4 firmware=BANCO flash_bytes=16777216 psram_bytes=8386247 rgb_pin=48 servo_enabled=0
+INFO fs_mounted=1 total=5177344 used=1048576 free=4128768
+INFO psram_free=6243711 psram_largest=6160372 ram_buffer_bytes=2097152 ram_capacity_records=23831 ram_test_ok=1
+STATUS armed=0 phase=LANDED deploy=1 log_active=0 log_ok=1 rows=3500 dropped=0 max_dt_us=10589 max_write_us=84274 max_flush_us=2765 max_queue=0 late=0 max_core_us=372 predeploy_max_dt_us=10589 predeploy_late=0 mode=RAM core=BASE clock=MODEL ram_records=3500 ram_pending=0 flash_ops_capture=0 save_ms=2631 log_error=NONE
+OK DELETE
+INFO revision=4 firmware=BANCO flash_bytes=16777216 psram_bytes=8386247 rgb_pin=48 servo_enabled=0
+INFO fs_mounted=1 total=5177344 used=737280 free=4440064
+INFO psram_free=6243711 psram_largest=6160372 ram_buffer_bytes=2097152 ram_capacity_records=23831 ram_test_ok=1
+STATUS armed=0 phase=LANDED deploy=1 log_active=0 log_ok=1 rows=3500 dropped=0 max_dt_us=10589 max_write_us=84274 max_flush_us=2765 max_queue=0 late=0 max_core_us=372 predeploy_max_dt_us=10589 predeploy_late=0 mode=RAM core=BASE clock=MODEL ram_records=3500 ram_pending=0 flash_ops_capture=0 save_ms=2631 log_error=NONE
+OK RUN RUMORE file=- mode=OFF core=BASE clock=WALL
+EVENT t=1042 wall_us=1042170 phase=BOOST h=0.06 v=1.33 deploy=0 dt_real_us=10000
+EVENT t=3042 wall_us=3042170 phase=COAST h=52.13 v=49.26 deploy=0 dt_real_us=10000
+EVENT t=7902 wall_us=7902170 phase=DESCENT h=171.36 v=-0.43 deploy=1 dt_real_us=10000
+EVENT t=16712 wall_us=16712170 phase=LANDED h=-32.04 v=0.15 deploy=1 dt_real_us=10000
+RESULT RUMORE algorithm=PASS accuracy=PASS landing=PASS log=SKIP timing=PASS deploy_ms=7902 deploy_wall_us=7902572 count=1 phase=LANDED file=- mode=OFF core=BASE clock=WALL max_dt_us=10999 predeploy_max_dt_us=10999 late=0 predeploy_late=0 max_core_us=364 max_write_us=0 max_flush_us=0 max_queue=0 rows=0 dropped=0 h_error_deploy=0.017 v_error_deploy=0.065 max_pre_h_error=0.167 max_pre_v_error=0.326 land_ms=16712 land_h_error=-32.040 early_landing=0 max_imu_gap_us=0 max_baro_gap_us=20999 numerical=0 ram_records=0 ram_pending=0 flash_ops_capture=0 save_ms=0 log_error=NONE
+INFO revision=4 firmware=BANCO flash_bytes=16777216 psram_bytes=8386247 rgb_pin=48 servo_enabled=0
+INFO fs_mounted=1 total=5177344 used=737280 free=4440064
+INFO psram_free=6243711 psram_largest=6160372 ram_buffer_bytes=2097152 ram_capacity_records=23831 ram_test_ok=1
+STATUS armed=0 phase=LANDED deploy=1 log_active=0 log_ok=1 rows=0 dropped=0 max_dt_us=10999 max_write_us=0 max_flush_us=0 max_queue=0 late=0 max_core_us=364 predeploy_max_dt_us=10999 predeploy_late=0 mode=OFF core=BASE clock=WALL ram_records=0 ram_pending=0 flash_ops_capture=0 save_ms=0 log_error=NONE
+[260334][E][vfs_api.cpp:105] open(): /littlefs/log0007.bin does not exist, no permits for creation
+OK RUN RUMORE file=/log0007.bin mode=RAM core=BASE clock=WALL
+EVENT t=1040 wall_us=1040317 phase=BOOST h=0.06 v=1.33 deploy=0 dt_real_us=10000
+EVENT t=3040 wall_us=3040317 phase=COAST h=52.04 v=49.21 deploy=0 dt_real_us=10000
+EVENT t=7910 wall_us=7910317 phase=DESCENT h=171.36 v=-0.49 deploy=1 dt_real_us=10000
+EVENT t=16710 wall_us=16710317 phase=LANDED h=-32.01 v=0.14 deploy=1 dt_real_us=10000
+SAVING RAM: acquisizione terminata, non premere RESET
+SAVE_DONE ok=1 ram_pending=0 file=/log0007.bin
+RESULT RUMORE algorithm=PASS accuracy=PASS landing=PASS log=PASS timing=PASS deploy_ms=7910 deploy_wall_us=7910508 count=1 phase=LANDED file=/log0007.bin mode=RAM core=BASE clock=WALL max_dt_us=10317 predeploy_max_dt_us=10317 late=0 predeploy_late=0 max_core_us=347 max_write_us=55396 max_flush_us=2566 max_queue=0 rows=3499 dropped=0 h_error_deploy=0.021 v_error_deploy=0.082 max_pre_h_error=0.202 max_pre_v_error=0.411 land_ms=16710 land_h_error=-32.009 early_landing=0 max_imu_gap_us=0 max_baro_gap_us=20317 numerical=0 ram_records=3499 ram_pending=0 flash_ops_capture=0 save_ms=2662 log_error=NONE
+INFO revision=4 firmware=BANCO flash_bytes=16777216 psram_bytes=8386247 rgb_pin=48 servo_enabled=0
+INFO fs_mounted=1 total=5177344 used=1048576 free=4128768
+INFO psram_free=6243711 psram_largest=6160372 ram_buffer_bytes=2097152 ram_capacity_records=23831 ram_test_ok=1
+STATUS armed=0 phase=LANDED deploy=1 log_active=0 log_ok=1 rows=3499 dropped=0 max_dt_us=10317 max_write_us=55396 max_flush_us=2566 max_queue=0 late=0 max_core_us=347 predeploy_max_dt_us=10317 predeploy_late=0 mode=RAM core=BASE clock=WALL ram_records=3499 ram_pending=0 flash_ops_capture=0 save_ms=2662 log_error=NONE
+BEGIN /log0007.bin 307960
+END
+INFO revision=4 firmware=BANCO flash_bytes=16777216 psram_bytes=8386247 rgb_pin=48 servo_enabled=0
+INFO fs_mounted=1 total=5177344 used=1048576 free=4128768
+INFO psram_free=6243711 psram_largest=6160372 ram_buffer_bytes=2097152 ram_capacity_records=23831 ram_test_ok=1
+STATUS armed=0 phase=LANDED deploy=1 log_active=0 log_ok=1 rows=3499 dropped=0 max_dt_us=10317 max_write_us=55396 max_flush_us=2566 max_queue=0 late=0 max_core_us=347 predeploy_max_dt_us=10317 predeploy_late=0 mode=RAM core=BASE clock=WALL ram_records=3499 ram_pending=0 flash_ops_capture=0 save_ms=2662 log_error=NONE
+OK DELETE
+INFO revision=4 firmware=BANCO flash_bytes=16777216 psram_bytes=8386247 rgb_pin=48 servo_enabled=0
+INFO fs_mounted=1 total=5177344 used=737280 free=4440064
+INFO psram_free=6243711 psram_largest=6160372 ram_buffer_bytes=2097152 ram_capacity_records=23831 ram_test_ok=1
+STATUS armed=0 phase=LANDED deploy=1 log_active=0 log_ok=1 rows=3499 dropped=0 max_dt_us=10317 max_write_us=55396 max_flush_us=2566 max_queue=0 late=0 max_core_us=347 predeploy_max_dt_us=10317 predeploy_late=0 mode=RAM core=BASE clock=WALL ram_records=3499 ram_pending=0 flash_ops_capture=0 save_ms=2662 log_error=NONE
+[326224][E][vfs_api.cpp:105] open(): /littlefs/log0007.bin does not exist, no permits for creation
+OK RUN BUCO_BARO file=/log0007.bin mode=RAM core=BASE clock=WALL
+EVENT t=1040 wall_us=1040641 phase=BOOST h=0.03 v=1.25 deploy=0 dt_real_us=10000
+EVENT t=3040 wall_us=3040641 phase=COAST h=52.02 v=49.18 deploy=0 dt_real_us=10000
+EVENT t=7910 wall_us=7910641 phase=DESCENT h=171.36 v=-0.50 deploy=1 dt_real_us=10000
+EVENT t=16710 wall_us=16710641 phase=LANDED h=-31.96 v=0.17 deploy=1 dt_real_us=10000
+SAVING RAM: acquisizione terminata, non premere RESET
+SAVE_DONE ok=1 ram_pending=0 file=/log0007.bin
+RESULT BUCO_BARO algorithm=PASS accuracy=PASS landing=PASS log=PASS timing=PASS deploy_ms=7910 deploy_wall_us=7910780 count=1 phase=LANDED file=/log0007.bin mode=RAM core=BASE clock=WALL max_dt_us=10641 predeploy_max_dt_us=10641 late=0 predeploy_late=0 max_core_us=345 max_write_us=55784 max_flush_us=2593 max_queue=0 rows=3499 dropped=0 h_error_deploy=0.021 v_error_deploy=0.071 max_pre_h_error=0.554 max_pre_v_error=0.416 land_ms=16710 land_h_error=-31.957 early_landing=0 max_imu_gap_us=0 max_baro_gap_us=1010000 numerical=0 ram_records=3499 ram_pending=0 flash_ops_capture=0 save_ms=2612 log_error=NONE
+INFO revision=4 firmware=BANCO flash_bytes=16777216 psram_bytes=8386247 rgb_pin=48 servo_enabled=0
+INFO fs_mounted=1 total=5177344 used=1048576 free=4128768
+INFO psram_free=6243711 psram_largest=6160372 ram_buffer_bytes=2097152 ram_capacity_records=23831 ram_test_ok=1
+STATUS armed=0 phase=LANDED deploy=1 log_active=0 log_ok=1 rows=3499 dropped=0 max_dt_us=10641 max_write_us=55784 max_flush_us=2593 max_queue=0 late=0 max_core_us=345 predeploy_max_dt_us=10641 predeploy_late=0 mode=RAM core=BASE clock=WALL ram_records=3499 ram_pending=0 flash_ops_capture=0 save_ms=2612 log_error=NONE
+BEGIN /log0007.bin 307960
+END
+INFO revision=4 firmware=BANCO flash_bytes=16777216 psram_bytes=8386247 rgb_pin=48 servo_enabled=0
+INFO fs_mounted=1 total=5177344 used=1048576 free=4128768
+INFO psram_free=6243711 psram_largest=6160372 ram_buffer_bytes=2097152 ram_capacity_records=23831 ram_test_ok=1
+STATUS armed=0 phase=LANDED deploy=1 log_active=0 log_ok=1 rows=3499 dropped=0 max_dt_us=10641 max_write_us=55784 max_flush_us=2593 max_queue=0 late=0 max_core_us=345 predeploy_max_dt_us=10641 predeploy_late=0 mode=RAM core=BASE clock=WALL ram_records=3499 ram_pending=0 flash_ops_capture=0 save_ms=2612 log_error=NONE
+OK DELETE
+INFO revision=4 firmware=BANCO flash_bytes=16777216 psram_bytes=8386247 rgb_pin=48 servo_enabled=0
+INFO fs_mounted=1 total=5177344 used=737280 free=4440064
+INFO psram_free=6243711 psram_largest=6160372 ram_buffer_bytes=2097152 ram_capacity_records=23831 ram_test_ok=1
+STATUS armed=0 phase=LANDED deploy=1 log_active=0 log_ok=1 rows=3499 dropped=0 max_dt_us=10641 max_write_us=55784 max_flush_us=2593 max_queue=0 late=0 max_core_us=345 predeploy_max_dt_us=10641 predeploy_late=0 mode=RAM core=BASE clock=WALL ram_records=3499 ram_pending=0 flash_ops_capture=0 save_ms=2612 log_error=NONE
+[391551][E][vfs_api.cpp:105] open(): /littlefs/log0007.bin does not exist, no permits for creation
+OK RUN PARACADUTE file=/log0007.bin mode=RAM core=BASE clock=WALL
+EVENT t=1040 wall_us=1040431 phase=BOOST h=0.03 v=1.25 deploy=0 dt_real_us=10000
+EVENT t=3040 wall_us=3040431 phase=COAST h=52.01 v=49.18 deploy=0 dt_real_us=10000
+EVENT t=7910 wall_us=7910431 phase=DESCENT h=171.37 v=-0.49 deploy=1 dt_real_us=10000
+EVENT t=44750 wall_us=44750431 phase=LANDED h=-1.41 v=-0.29 deploy=1 dt_real_us=10000
+SAVING RAM: acquisizione terminata, non premere RESET
+SAVE_DONE ok=1 ram_pending=0 file=/log0007.bin
+RESULT PARACADUTE algorithm=PASS accuracy=PASS landing=PASS log=PASS timing=PASS deploy_ms=7910 deploy_wall_us=7910572 count=1 phase=LANDED file=/log0007.bin mode=RAM core=BASE clock=WALL max_dt_us=10431 predeploy_max_dt_us=10431 late=0 predeploy_late=0 max_core_us=345 max_write_us=54045 max_flush_us=2424 max_queue=0 rows=7499 dropped=0 h_error_deploy=0.026 v_error_deploy=0.085 max_pre_h_error=0.200 max_pre_v_error=0.422 land_ms=44750 land_h_error=-1.408 early_landing=0 max_imu_gap_us=0 max_baro_gap_us=20431 numerical=0 ram_records=7499 ram_pending=0 flash_ops_capture=0 save_ms=5660 log_error=NONE
+INFO revision=4 firmware=BANCO flash_bytes=16777216 psram_bytes=8386247 rgb_pin=48 servo_enabled=0
+INFO fs_mounted=1 total=5177344 used=1400832 free=3776512
+INFO psram_free=6243711 psram_largest=6160372 ram_buffer_bytes=2097152 ram_capacity_records=23831 ram_test_ok=1
+STATUS armed=0 phase=LANDED deploy=1 log_active=0 log_ok=1 rows=7499 dropped=0 max_dt_us=10431 max_write_us=54045 max_flush_us=2424 max_queue=0 late=0 max_core_us=345 predeploy_max_dt_us=10431 predeploy_late=0 mode=RAM core=BASE clock=WALL ram_records=7499 ram_pending=0 flash_ops_capture=0 save_ms=5660 log_error=NONE
+BEGIN /log0007.bin 659960
+END
+INFO revision=4 firmware=BANCO flash_bytes=16777216 psram_bytes=8386247 rgb_pin=48 servo_enabled=0
+INFO fs_mounted=1 total=5177344 used=1400832 free=3776512
+INFO psram_free=6243711 psram_largest=6160372 ram_buffer_bytes=2097152 ram_capacity_records=23831 ram_test_ok=1
+STATUS armed=0 phase=LANDED deploy=1 log_active=0 log_ok=1 rows=7499 dropped=0 max_dt_us=10431 max_write_us=54045 max_flush_us=2424 max_queue=0 late=0 max_core_us=345 predeploy_max_dt_us=10431 predeploy_late=0 mode=RAM core=BASE clock=WALL ram_records=7499 ram_pending=0 flash_ops_capture=0 save_ms=5660 log_error=NONE
+OK DELETE

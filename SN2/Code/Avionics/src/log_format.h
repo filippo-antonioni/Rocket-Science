@@ -3,24 +3,28 @@
 #include <cstddef>
 #include <cstring>
 
-// Formato little-endian, float IEEE754 a 32 bit. Un record = 64 byte.
+// Formato little-endian, float IEEE754 a 32 bit. v3: un record = 88 byte.
 #pragma pack(push, 1)
 struct LogHeader {
-    char magic[8] = {'R','K','T','L','O','G','2','\0'};
-    uint16_t version = 2, recordSize = 64;
+    char magic[8] = {'R','K','T','L','O','G','3','\0'};
+    uint16_t version = 3, recordSize = 88;
     uint32_t periodoUs = 10000, preCampioni = 300, sorgente = 0, asse = 2;
     int32_t segno = 1;
+    uint32_t logMode = 1, coreMode = 0, clockMode = 0, durataMs = 35000;
 };
 struct Record {
     uint32_t tMs, dtUs, sequenza;
     float forza, baro, h, v, bias, pressione;
     int16_t raw[6];
     uint8_t fase, flags, motivo, correzione;
-    uint32_t ritardi, persi, crc;
+    uint32_t ritardi, persi;
+    uint32_t wallUs, realDtUs, coreUs;
+    float trueH, trueV; // NaN sui sensori reali
+    uint32_t queueDepth, crc;
 };
 #pragma pack(pop)
-static_assert(sizeof(Record) == 64, "Formato record modificato");
-static_assert(sizeof(LogHeader) == 32, "Formato header modificato");
+static_assert(sizeof(Record) == 88, "Formato record modificato");
+static_assert(sizeof(LogHeader) == 48, "Formato header modificato");
 // flags: 1 IMU valida, 2 baro nuovo, 4 deploy, 8 PWM servo comandato,
 //        16 simulazione, 32 errore numerico Kalman.
 inline uint32_t crc32(const void* data, size_t size) {

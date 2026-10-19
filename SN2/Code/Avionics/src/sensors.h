@@ -78,7 +78,7 @@ public:
         for(int i=0;i<3;++i) event.accel[i]=event.gyro[i]=INT16_MIN;
         int result=imu.getDataFromRegisters(event);
         for(int i=0;i<3;++i) {s.raw[i]=event.accel[i];s.raw[i+3]=event.gyro[i];}
-        s.imuOk=result==0 && (event.sensor_mask & (1 << INV_SENSOR_ACCEL)) && event.accel[cfg::asse]!=INT16_MIN;
+        s.imuOk=result==0 && event.accel[cfg::asse]!=INT16_MIN;
         s.forza=s.imuOk ? cfg::segno*event.accel[cfg::asse]/2048.0*9.80665 : NAN;
         if(s.imuOk) lastImuMs=millis();
         s.quota=altitude;s.pressione=pressure;s.fresh=fresh;fresh=false;

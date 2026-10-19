@@ -5,6 +5,8 @@
 // Algoritmi senza dipendenze Arduino: verificabili anche sul PC.
 namespace volo {
 struct Parametri {
+    bool robusto = false; // BASE resta identico al MATLAB; CANDIDATO va verificato al banco
+    double sogliaFineSpinta = 2.0; // forza specifica, m/s^2; tollera coast circa zero
     double g = 9.80665;
     double rumoreAcc = 0.012;
     double rumoreBaro = 2.97 * 0.083;
@@ -18,7 +20,7 @@ struct Parametri {
     double quotaMinDeploy = 30.0;
     double tempoMinDeploy = 1.8;
     double tempoMaxDeploy = 8.0;
-};  
+};
 
 enum class Correzione { Assente, Scartata, Accettata, ErroreNumerico };
 
@@ -125,7 +127,7 @@ struct MacchinaStati {
     MotivoDeploy motivo = MotivoDeploy::Nessuno;
 
     Eventi step(double v, double forza, double h, uint32_t oraMs,
-                const Parametri& p) {
+                const Parametri& p, bool landedEvidence=false, bool descentEvidence=false) {
         Eventi e;
         // Sottrazione unsigned: funziona anche al rollover di millis().
         const double tempoVolo = uint32_t(oraMs - decolloMs) * 0.001;
@@ -141,14 +143,14 @@ struct MacchinaStati {
                 }
                 break;
             case Fase::BOOST:
-                count = (v < velocitaPrecedente && forza < 0 && h > p.lunghezzaRampa)
+                count = (v < velocitaPrecedente && forza < (p.robusto?p.sogliaFineSpinta:0.0) && h > p.lunghezzaRampa)
                         ? count + 1 : 0;
                 if (count >= p.conferme) { fase = Fase::COAST; count = 0; }
                 if (tempoVolo > p.tempoMaxDeploy && !deploy)
                     apri(e, MotivoDeploy::Timeout);
                 break;
             case Fase::COAST:
-                count = (v < 0 && h > p.quotaMinDeploy && tempoVolo > p.tempoMinDeploy)
+                count = (v < 0 && h > p.quotaMinDeploy && tempoVolo > p.tempoMinDeploy && (!p.robusto || descentEvidence))
                         ? count + 1 : 0;
                 if (count >= p.conferme) apri(e, MotivoDeploy::Apogeo);
                 if (tempoVolo > p.tempoMaxDeploy && !deploy)
@@ -156,7 +158,7 @@ struct MacchinaStati {
                 break;
             case Fase::DESCENT:
                 count = (std::fabs(v) < 0.4 && h < 10) ? count + 1 : 0;
-                if (count >= p.conferme) {
+                if (p.robusto ? landedEvidence : count >= p.conferme) {
                     fase = Fase::LANDED; count = 0; e.atterraggio = true;
                 }
                 break;

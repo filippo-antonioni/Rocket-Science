@@ -14,7 +14,7 @@ with tempfile.TemporaryDirectory() as temp:
     with (temp/'out.csv').open() as f: rows=list(csv.DictReader(f))
     assert len(rows)==3 and rows[0]['fase']=='DESCENT' and rows[1]['forza_ms2']=='nan'
     assert rows[2]['sequenza']=='102' and rows[0]['ax_raw']=='0' and rows[0]['az_raw']=='2048'
-    data=bytearray(binary.read_bytes());data[32+64+8]^=1
+    data=bytearray(binary.read_bytes());data[48+88+8]^=1
     (temp/'bad.bin').write_bytes(data)
     try: rocket.decode(temp/'bad.bin',temp/'bad.csv')
     except ValueError: pass
