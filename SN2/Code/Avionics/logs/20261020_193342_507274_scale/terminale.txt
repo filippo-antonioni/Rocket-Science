@@ -1,0 +1,17 @@
+INFO firmware=SENSORI revision=1 psram_bytes=8386247 ram_buffer_bytes=2097152 ram_test_ok=1
+INFO fs_mounted=1 free=4440064
+STATUS armed=0 log_active=0 pending_report=0 ram_pending=0 rows=5853 ram_records=5853 file=/sens0000.bin log_error=NONE
+CALIBRAZIONE: tieni la scheda ferma nella posizione di rampa fino a OK TEST
+[190279][E][vfs_api.cpp:105] open(): /littlefs/sens0000.bin does not exist, no permits for creation
+OK TEST seconds=180 file=/sens0000.bin; registrazione continua, nessuna macchina a stati
+SAVING SENSORI: acquisizione finita; attendere, non scollegare USB
+RESULT SENSORI complete=1 elapsed_ms=180001 log=PASS timing=PASS file=/sens0000.bin rows=17561 ram_records=17561 dropped=0 flash_ops_capture=0 save_ms=13186 ram_pending=0 max_dt_us=11004 late=0 max_poll_us=868 max_read_us=1294 max_core_us=162 imu_invalid=38 baro_fresh=6585 max_imu_gap_us=21004 max_baro_gap_us=30996 numerical=0 log_error=NONE
+INFO firmware=SENSORI revision=1 psram_bytes=8386247 ram_buffer_bytes=2097152 ram_test_ok=1
+INFO fs_mounted=1 free=2887680
+STATUS armed=0 log_active=0 pending_report=0 ram_pending=0 rows=17561 ram_records=17561 file=/sens0000.bin log_error=NONE
+BEGIN /sens0000.bin 1545416
+END
+INFO firmware=SENSORI revision=1 psram_bytes=8386247 ram_buffer_bytes=2097152 ram_test_ok=1
+INFO fs_mounted=1 free=2887680
+STATUS armed=0 log_active=0 pending_report=0 ram_pending=0 rows=17561 ram_records=17561 file=/sens0000.bin log_error=NONE
+OK DELETE
