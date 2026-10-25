@@ -1,0 +1,11 @@
+{
+  "complete": true,
+  "removed": [
+    "/pwr0000.bin",
+    "/pwr0000.json",
+    "/pwr0001.bin",
+    "/pwr0002.bin",
+    "/pwr0002.json"
+  ],
+  "backup_zip": "C:\\Filippo\\Rocket\\Rocket-Science\\SN2\\Code\\Avionics\\logs\\20261023_182015_786892_pulizia_power.zip"
+}

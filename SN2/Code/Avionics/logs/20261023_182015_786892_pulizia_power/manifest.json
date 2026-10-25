@@ -1,0 +1,59 @@
+{
+  "firmware": "POWER_TEST",
+  "files": [
+    {
+      "name": "/pwr0000.bin",
+      "size": 1545416,
+      "local": "pwr0000/alimentazione.bin",
+      "sha256": "82f4fbf52dc9d4d86b0dc3b586e6ea9a5df3b625bca9684a450f0969b15633d2",
+      "integrity": {
+        "status": "CRC_SEQUENCE_OK",
+        "confirm": false,
+        "records": 17561
+      }
+    },
+    {
+      "name": "/pwr0000.json",
+      "size": 659,
+      "local": "pwr0000/firmware.json",
+      "sha256": "82ccbeb505bfde4641ec3a9e06a32a7995c5614ba8cfd98d86536492ff09c0c5",
+      "integrity": {
+        "status": "JSON_OK",
+        "confirm": false
+      }
+    },
+    {
+      "name": "/pwr0001.bin",
+      "size": 48,
+      "local": "pwr0001/alimentazione.bin",
+      "sha256": "1ff4a7aa3eb8a12305fb303278cc1df288d3534b0c4563faa7ae3c5842bfd897",
+      "integrity": {
+        "status": "HEADER_ONLY",
+        "confirm": false,
+        "records": 0
+      }
+    },
+    {
+      "name": "/pwr0002.bin",
+      "size": 1545416,
+      "local": "pwr0002/alimentazione.bin",
+      "sha256": "d627980ccf9b4600b7ec3886b44cf9e57b9d36bbbe1fd95df5adc246ddd0bcbf",
+      "integrity": {
+        "status": "CRC_SEQUENCE_OK",
+        "confirm": false,
+        "records": 17561
+      }
+    },
+    {
+      "name": "/pwr0002.json",
+      "size": 659,
+      "local": "pwr0002/firmware.json",
+      "sha256": "7e1a67fcbf8f6df1fa22eb5c0db9d8beaa369f3022a10b3cedfc6fed530d5e64",
+      "integrity": {
+        "status": "JSON_OK",
+        "confirm": false
+      }
+    }
+  ],
+  "note": "Backup verificato PRIMA della rimozione. Anche i tentativi incompleti sono conservati."
+}

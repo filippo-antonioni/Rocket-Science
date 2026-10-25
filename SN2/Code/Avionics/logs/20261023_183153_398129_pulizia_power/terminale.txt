@@ -1,0 +1,8 @@
+> GET /pwr0000.bin
+BEGIN /pwr0000.bin 1545416
+
+END
+> GET /pwr0000.json
+BEGIN /pwr0000.json 659
+
+END

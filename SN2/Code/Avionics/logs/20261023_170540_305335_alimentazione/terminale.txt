@@ -1,0 +1,22 @@
+INFO firmware=POWER_TEST revision=1 reset_reason=POWERON reset_code=1 psram_bytes=8386263 servo_pin=17 axis=0 sign=-1 voltage_measured=0
+STATUS stage=HOLD armed=0 log_active=0 ram_pending=0 rows=0 ram_records=0 commands=0 file= log_error=NONE
+INFO firmware=POWER_TEST revision=1 reset_reason=POWERON reset_code=1 psram_bytes=8386263 servo_pin=17 axis=0 sign=-1 voltage_measured=0
+STATUS stage=HOLD armed=0 log_active=0 ram_pending=0 rows=0 ram_records=0 commands=0 file= log_error=NONE
+BEGIN /pwr0000.bin 1545328
+END
+INFO firmware=POWER_TEST revision=1 reset_reason=POWERON reset_code=1 psram_bytes=8386263 servo_pin=17 axis=0 sign=-1 voltage_measured=0
+STATUS stage=HOLD armed=0 log_active=0 ram_pending=0 rows=0 ram_records=0 commands=0 file= log_error=NONE
+BEGIN /pwr0000.json 659
+END
+INFO firmware=POWER_TEST revision=1 reset_reason=POWERON reset_code=1 psram_bytes=8386263 servo_pin=17 axis=0 sign=-1 voltage_measured=0
+STATUS stage=HOLD armed=0 log_active=0 ram_pending=0 rows=0 ram_records=0 commands=0 file= log_error=NONE
+BEGIN /pwr0001.bin 48
+END
+INFO firmware=POWER_TEST revision=1 reset_reason=POWERON reset_code=1 psram_bytes=8386263 servo_pin=17 axis=0 sign=-1 voltage_measured=0
+STATUS stage=HOLD armed=0 log_active=0 ram_pending=0 rows=0 ram_records=0 commands=0 file= log_error=NONE
+BEGIN /pwr0002.bin 1545416
+END
+INFO firmware=POWER_TEST revision=1 reset_reason=POWERON reset_code=1 psram_bytes=8386263 servo_pin=17 axis=0 sign=-1 voltage_measured=0
+STATUS stage=HOLD armed=0 log_active=0 ram_pending=0 rows=0 ram_records=0 commands=0 file= log_error=NONE
+BEGIN /pwr0002.json 659
+END

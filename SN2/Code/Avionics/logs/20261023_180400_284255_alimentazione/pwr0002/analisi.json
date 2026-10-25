@@ -1,0 +1,147 @@
+{
+  "crc_and_sequence": "PASS",
+  "complete": true,
+  "voltage_measured": false,
+  "samples": 17561,
+  "last_sample_s": 179.998499,
+  "dt_us": {
+    "n": 17561,
+    "mean": 10249.900290416263,
+    "min": 10000,
+    "max": 11004
+  },
+  "imu_invalid": 47,
+  "max_valid_imu_gap_us": 21003,
+  "max_fresh_baro_gap_us": 30999,
+  "numerical": 0,
+  "events": [
+    {
+      "index": 1,
+      "time_s": 60.002499,
+      "command": "APRI"
+    },
+    {
+      "index": 2,
+      "time_s": 90.003501,
+      "command": "CHIUDI"
+    },
+    {
+      "index": 3,
+      "time_s": 120.004499,
+      "command": "APRI"
+    }
+  ],
+  "servo_windows": [
+    {
+      "event": 1,
+      "command": "APRI",
+      "window": "prima",
+      "start_s": 58.002499,
+      "end_s": 60.002499,
+      "samples": 195,
+      "max_dt_us": 11004,
+      "imu_invalid": 0,
+      "baro_fresh": 74
+    },
+    {
+      "event": 1,
+      "command": "APRI",
+      "window": "dopo",
+      "start_s": 60.002499,
+      "end_s": 62.002499,
+      "samples": 196,
+      "max_dt_us": 11002,
+      "imu_invalid": 1,
+      "baro_fresh": 73
+    },
+    {
+      "event": 2,
+      "command": "CHIUDI",
+      "window": "prima",
+      "start_s": 88.003501,
+      "end_s": 90.003501,
+      "samples": 195,
+      "max_dt_us": 11002,
+      "imu_invalid": 1,
+      "baro_fresh": 73
+    },
+    {
+      "event": 2,
+      "command": "CHIUDI",
+      "window": "dopo",
+      "start_s": 90.003501,
+      "end_s": 92.003501,
+      "samples": 196,
+      "max_dt_us": 11003,
+      "imu_invalid": 0,
+      "baro_fresh": 74
+    },
+    {
+      "event": 3,
+      "command": "APRI",
+      "window": "prima",
+      "start_s": 118.004499,
+      "end_s": 120.004499,
+      "samples": 195,
+      "max_dt_us": 11003,
+      "imu_invalid": 1,
+      "baro_fresh": 73
+    },
+    {
+      "event": 3,
+      "command": "APRI",
+      "window": "dopo",
+      "start_s": 120.004499,
+      "end_s": 122.004499,
+      "samples": 195,
+      "max_dt_us": 11002,
+      "imu_invalid": 0,
+      "baro_fresh": 73
+    }
+  ],
+  "firmware_result": {
+    "firmware": "POWER_TEST",
+    "revision": 1,
+    "file": "/pwr0002.bin",
+    "complete": 1,
+    "elapsed_ms": 180000,
+    "log": "PASS",
+    "timing": "PASS",
+    "servo": "PASS",
+    "voltage_measured": false,
+    "reset_reason": "POWERON",
+    "reset_code": 1,
+    "rows": 17561,
+    "ram_records": 17561,
+    "dropped": 0,
+    "flash_ops_capture": 0,
+    "save_ms": 13455,
+    "ram_pending": 0,
+    "max_dt_us": 11004,
+    "late": 0,
+    "max_poll_us": 872,
+    "max_read_us": 1376,
+    "max_core_us": 192,
+    "max_servo_us": 33,
+    "imu_invalid": 47,
+    "imu_driver_errors": 0,
+    "imu_empty": 47,
+    "last_imu_error": 0,
+    "baro_fresh": 6585,
+    "max_imu_gap_us": 21003,
+    "max_baro_gap_us": 30999,
+    "numerical": 0,
+    "commands": 3,
+    "event_wall_us": [
+      60002534,
+      90003533,
+      120004531
+    ],
+    "event_cost_us": [
+      33,
+      30,
+      31
+    ],
+    "log_error": "NONE"
+  }
+}

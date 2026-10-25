@@ -1,0 +1,18 @@
+[
+  {
+    "file": "/pwr0000.bin",
+    "complete": true,
+    "max_dt_us": 11582,
+    "imu_invalid": 42
+  },
+  {
+    "file": "/pwr0001.bin",
+    "error": "File senza campioni: possibile reset prima del salvataggio; dati PSRAM non recuperabili dopo spegnimento"
+  },
+  {
+    "file": "/pwr0002.bin",
+    "complete": true,
+    "max_dt_us": 11004,
+    "imu_invalid": 47
+  }
+]
