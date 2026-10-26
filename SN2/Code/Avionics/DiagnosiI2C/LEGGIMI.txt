@@ -1,0 +1,72 @@
+DIAGNOSI I2C DOPO SALDATURA - REVISIONE 2
+
+CORREZIONE: la versione iniziale interrogava anche indirizzi riservati, incluso
+0x7E (broadcast I3C). Nel log ricevuto i due sensori erano riconosciuti, poi
+compariva un errore a 0x7E e SDA rimaneva bassa. Questo puo dipendere dallo
+scanner, non prova una cattiva saldatura. La revisione 2 interroga solo
+0x08..0x77. Per rimuovere uno stato bloccato, togli alimentazione anche ai
+sensori: il solo pulsante RESET dell'ESP puo non bastare.
+
+1. Copia l'intera cartella DiagnosiI2C dentro Avionics, senza sovrascrivere
+   il contenuto del progetto principale.
+2. Batteria scollegata e filo step-up OUT+ -> ESP 5VIN staccato. L'ESP deve
+   essere alimentato solo dalla USB-UART usata finora su COM6.
+   Lascia collegati IMU e BMP280, alimentati dal 3V3 dell'ESP e con GND comune.
+3. Chiudi Monitor seriale e altri CMD. Doppio clic su AVVIA_DIAGNOSI_I2C.cmd.
+   Compila/carica uno scanner separato. Quando richiesto, scollega la USB per
+   almeno 5 secondi e ricollegala (batteria sempre scollegata), poi premi INVIO.
+   Legge cinque scansioni: circa 15-20 s. Se sono gia finite, premi RESET
+   dopo che si e aperta la lettura. L'RGB non e usato come indicatore.
+4. Incolla tutte le righe da SCAN a END_DIAGNOSI, oppure allega il file .txt
+   salvato automaticamente dentro Avionics/logs.
+
+Se la porta e cambiata, dal terminale aperto in Avionics:
+  & "$env:USERPROFILE\.platformio\penv\Scripts\python.exe" .\DiagnosiI2C\prova.py --port COM6
+Sostituisci COM6 con la porta reale. Non occorre digitare comandi nel monitor.
+Per ripetere senza upload:
+  & "$env:USERPROFILE\.platformio\penv\Scripts\python.exe" .\DiagnosiI2C\prova.py --port COM6 --solo-lettura
+Poi premi RESET sull'ESP.
+
+Collegamenti attesi:
+  GPIO8 ESP -> SDA/SDI di entrambi i sensori
+  GPIO9 ESP -> SCL/SCK di entrambi i sensori
+  3V3 ESP -> alimentazione e CS/CSB di entrambi i sensori
+  GND ESP -> GND di entrambi, IMU AD0 e BMP SDO
+  Non alimentare i sensori dalla linea 5 V.
+
+Interpretazione:
+- FOUND 0x68, IMU WHO_AM_I 0x67 OK: ICM42670P riconosciuta all'indirizzo previsto.
+- FOUND 0x76 (o 0x77), BARO CHIP_ID 0x58 OK: BMP280 riconosciuto.
+- IMU a 0x69: AD0 e alto; il firmware originale sceglie 0x68 (AD0 basso).
+- found=0: controllare alimentazione, GND, SDA/SCL, CS e continuita delle saldature.
+- BUS_LOW: SDA o SCL osservata bassa prima della scansione. Potenziale corto,
+  collegamento errato, alimentazione mancante o periferica che trattiene il bus;
+  non e da sola la prova che un sensore sia guasto.
+- Solo un sensore: controllare prima i collegamenti e le saldature del mancante.
+- ENTRAMBI_RICONOSCIUTI: la comunicazione di base funziona; se ORIENT continuava
+  a fallire, serve poi distinguere l'inizializzazione e le misure dei sensori.
+
+Non rifare saldature a caso e non scambiare fili a circuito acceso. Con
+alimentazione scollegata puoi verificare la continuita fra i punti realmente
+da collegare. Su una perfboard a piazzole isolate i fori vicini non sono
+automaticamente collegati come le righe di una breadboard.
+
+Questo firmware non muove il servo, non formatta, non monta LittleFS e non
+salva dati nella flash dei log. Mantiene la stessa mappa partizioni.
+Sostituisce l'applicazione attualmente caricata; dopo la diagnosi si puo
+ricaricare la modalita precedente usando il suo normale menu.
+Funziona con il solo framework Arduino/Wire, senza librerie sensori aggiuntive.
+
+Fonti per gli identificativi dei chip:
+TDK ICM42670P, WHO_AM_I 0x75 = 0x67:
+https://product.tdk.com/system/files/dam/doc/product/sensor/mortion-inertial/imu/data_sheet/ds-000451-icm-42670-p.pdf
+Bosch, differenza identificativi BMP280/BME280, registro 0xD0:
+https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bme280-ds002.pdf
+NXP I2C, indirizzi riservati, tabella 4:
+https://community.nxp.com/pwmxy87654/attachments/pwmxy87654/other/25158/1/UM10204%20Rev.7.pdf
+Microchip, 0x7E riservato in I2C e broadcast in I3C:
+https://onlinedocs.microchip.com/oxy/GUID-20DC4AC0-78C3-43D4-B405-15D8B752B254-en-US-5/GUID-3D972BB3-DE9C-4804-9F1A-1DC27DCBD264.html
+
+Controlli del pacchetto eseguiti sul computer con periferiche simulate:
+assenza sensori, indirizzi normali/alternativi, ID errati, lettura fallita e
+bus basso. La compilazione effettiva ESP32 viene eseguita da PlatformIO sul PC.

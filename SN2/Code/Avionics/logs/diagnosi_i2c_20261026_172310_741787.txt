@@ -1,0 +1,14 @@
+SCAN 1/5 SDA_GPIO=8 SCL_GPIO=9 SDA_IDLE=1 SCL_IDLE=1
+FOUND 0x68
+IMU addr=0x68 WHO_AM_I=0x67 expected=0x67 OK
+BUS_ERROR addr=0x7E code=5
+RESULT found=1 bus_errors=1 IMU_0x68=OK IMU_0x69=NO BMP280=NO
+SCAN 2/5 SDA_GPIO=8 SCL_GPIO=9 SDA_IDLE=0 SCL_IDLE=1
+RESULT BUS_LOW: una linea resta bassa; controllare alimentazione, ponti di stagno e collegamenti
+SCAN 3/5 SDA_GPIO=8 SCL_GPIO=9 SDA_IDLE=0 SCL_IDLE=1
+RESULT BUS_LOW: una linea resta bassa; controllare alimentazione, ponti di stagno e collegamenti
+SCAN 4/5 SDA_GPIO=8 SCL_GPIO=9 SDA_IDLE=0 SCL_IDLE=1
+RESULT BUS_LOW: una linea resta bassa; controllare alimentazione, ponti di stagno e collegamenti
+SCAN 5/5 SDA_GPIO=8 SCL_GPIO=9 SDA_IDLE=0 SCL_IDLE=1
+RESULT BUS_LOW: una linea resta bassa; controllare alimentazione, ponti di stagno e collegamenti
+END_DIAGNOSI: premere RESET per ripetere
