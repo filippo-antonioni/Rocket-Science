@@ -1,5 +1,5 @@
 """Confronto con le equazioni MATLAB, non esecuzione del simulatore originale.
-Richiede Python + NumPy + g++. Eseguire dalla cartella razzo_cpp.
+Richiede Python + NumPy + g++. I percorsi sono relativi a questo script.
 """
 import pathlib
 import subprocess

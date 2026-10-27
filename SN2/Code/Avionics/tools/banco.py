@@ -26,7 +26,7 @@ Chiudere il Monitor seriale di VSCode prima di usare la porta.
 7  Stop del replay / ORIENT
 8  Elenco file sulla scheda
 9  Cambia porta
-10 Ripristino senza PSRAM: build + upload banco (se il nuovo non si avvia)
+10 Informazioni sul vecchio ripristino senza PSRAM
 11 Riprova SAVE dopo un errore di salvataggio flash
 0  Esci
 ''')
@@ -37,9 +37,10 @@ Chiudere il Monitor seriale di VSCode prima di usare la porta.
             if value: port=value
             continue
         if choice=='1': execute([sys.executable,'-m','platformio','run','-e','banco_psram']);continue
-        if choice in ['2','10']:
-            environment='banco_psram' if choice=='2' else 'banco'
-            execute([sys.executable,'-m','platformio','run','-e',environment,'-t','upload','--upload-port',port]);continue
+        if choice=='10':
+            print('Il progetto attuale non definisce un ambiente banco senza PSRAM. Nessun upload eseguito.');continue
+        if choice=='2':
+            execute([sys.executable,'-m','platformio','run','-e','banco_psram','-t','upload','--upload-port',port]);continue
         if choice in ['3','4','7','8','11']:
             execute([sys.executable,ROOT/'tools/rocket.py','--port',port,{'3':'info','4':'ramtest','7':'stop','8':'list','11':'save'}[choice]])
             continue

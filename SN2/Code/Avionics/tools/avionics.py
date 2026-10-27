@@ -1,4 +1,4 @@
-"""Un solo menu per tre ambienti dello stesso progetto PlatformIO."""
+"""Menu degli ambienti principali e dei progetti diagnostici separati."""
 import datetime
 import pathlib
 import subprocess
@@ -52,6 +52,11 @@ Chiudi il Monitor seriale di VSCode. Upload compila e carica la modalita scelta.
 11 LED: le sei prove RAM/OFF gia note
 12 SERVO: scegli un singolo dataset
 13 SERVO: tutti i 18 dataset, BASE, circa 20-30 minuti
+14 TEST ALIMENTAZIONE: apri il menu dedicato
+15 DIAGNOSI I2C: compila, carica e legge i sensori
+16 DIAGNOSI SERVO: compila, carica e avvia il test PWM
+17 POWER: backup verificato e rimozione dei soli log POWER dalla ESP
+18 DIAGNOSI I2C: sola lettura, senza upload (poi premi RESET)
 P  Cambia porta
 0  Esci
 ''')
@@ -77,6 +82,11 @@ P  Cambia porta
             if not value.isdigit() or not 1<=int(value)<=len(rocket.SCENARIOS):print('Numero non valido.');continue
             execute([sys.executable,ROOT/'tools/servo.py','--port',port,'test','--scenario',rocket.SCENARIOS[int(value)-1]]);continue
         if choice=='13':execute([sys.executable,ROOT/'tools/servo.py','--port',port,'test','--all','--clock','MODEL']);continue
+        if choice=='14':execute([sys.executable,ROOT/'TestAlimentazione/tools/prova.py','--port',port]);continue
+        if choice=='15':execute([sys.executable,ROOT/'DiagnosiI2C/prova.py','--port',port]);continue
+        if choice=='16':execute([sys.executable,ROOT/'DiagnosiServo/prova.py','--port',port]);continue
+        if choice=='17':execute([sys.executable,ROOT/'libera_spazio_power.py','--port',port]);continue
+        if choice=='18':execute([sys.executable,ROOT/'DiagnosiI2C/prova.py','--port',port,'--solo-lettura']);continue
         print('Scegli un numero della lista.')
 
 if __name__=='__main__':

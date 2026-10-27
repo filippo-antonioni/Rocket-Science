@@ -1,4 +1,4 @@
-#include "../src/flight_core.h"
+#include "../firmware/banco/flight_core.h"
 #include <iostream>
 #include <iomanip>
 #include <string>

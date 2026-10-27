@@ -1,0 +1,2 @@
+# Verifiche numeriche sul PC; installare g++ separatamente.
+numpy

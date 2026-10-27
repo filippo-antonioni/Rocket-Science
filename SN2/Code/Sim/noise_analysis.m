@@ -7,7 +7,8 @@ close all
 clc
 
 %% Caricamento dati 
-percorso = "C:\Filippo\Rocket\Rocket-Science\SN2\Code\Avionics\logs\device-monitor-260813-153005.log"; % percorso in cui si trova il file log da cui prendere i dati 
+cartella = fileparts(mfilename('fullpath'));
+percorso = fullfile(cartella, '..', 'Avionics', 'logs', 'device-monitor-260813-153005.log'); % log incluso nella repository
 
 righe = readlines(percorso);
 dati= [];

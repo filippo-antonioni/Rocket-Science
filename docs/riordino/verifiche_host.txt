@@ -1,0 +1,38 @@
+
+VERIFICA: tests/run_host.py
+PASS: manuale 130/90, nessun doppio comando, OFF, attach fallito, 18 replay collegati al servo simulato
+PASS: rifiuto modalita errata, flag servo/deploy, caso senza apertura e doppio deploy
+PASS RAM: PSRAM obbligatoria, zero flash in acquisizione, PAD circolare, CRC, overflow, limite durata, recupero seriale, SAVE dopo errore
+PASS logger: PAD senza record flash, prebuffer ordinato, nessun duplicato, chiusura LANDED, snapshot PAD, overflow rilevato
+PASS: tre ambienti, un solo setup/loop; sintassi con mock, non build ESP32
+PASS: test_core
+PASS: test_scenarios
+PASS: test_evidence
+PASS: replay_v3
+
+VERIFICA: tests/check_equivalence.py
+PASS: 6000 campioni, dt 0.01 s, errore massimo x/P=6.54e-13, fasi/eventi/scarti identici
+PASS: 6000 campioni, dt variabile, errore massimo x/P=5.68e-13, fasi/eventi/scarti identici
+
+VERIFICA: tests/test_decode.py
+ATTENZIONE: recuperato solo il prefisso valido, 2 record
+CSV: /workspace/scratch/be0670fb58c7/repo_review/delivery/Rocket-Science/SN2/Code/Avionics/tmpvpsj1xuh/out.csv; 3 record; v3; asse=2, segno=1
+CSV: /workspace/scratch/be0670fb58c7/repo_review/delivery/Rocket-Science/SN2/Code/Avionics/tmpvpsj1xuh/recover.csv; 2 record; v3; asse=2, segno=1
+PASS: file C++ decodificato in Python; CRC errato e coda troncata rilevati
+
+VERIFICA: tests/test_menu.py
+...
+----------------------------------------------------------------------
+Ran 3 tests in 0.001s
+
+OK
+
+VERIFICA: TestAlimentazione/tests/test_analysis.py
+..........
+----------------------------------------------------------------------
+Ran 10 tests in 1.140s
+
+OK
+PASS: timer 60/90/120 s, nessun duplicato, GPIO17, PWM e propagazione errori
+
+VERIFICHE HOST COMPLETATE. Nessuna build ESP32 o prova fisica eseguita.

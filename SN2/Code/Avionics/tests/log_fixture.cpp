@@ -1,4 +1,4 @@
-#include "../src/log_format.h"
+#include "../firmware/banco/log_format.h"
 #include <fstream>
 #include <limits>
 int main(int argc,char** argv) {

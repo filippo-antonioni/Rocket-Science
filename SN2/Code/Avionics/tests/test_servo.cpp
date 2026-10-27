@@ -10,7 +10,7 @@ std::vector<int> angles;
 bool failAttach=false;
 void ESP32PWM::allocateTimer(int n){assert(n==0);}
 void Servo::setPeriodHertz(int n){assert(n==50);}
-int Servo::attach(int pin,int low,int high){assert(pin==18 && low==500 && high==2400);mockAttached=!failAttach;return mockAttached;}
+int Servo::attach(int pin,int low,int high){assert(pin==cfg::servoPin && low==500 && high==2400);mockAttached=!failAttach;return mockAttached;}
 bool Servo::attached(){return mockAttached;}
 void Servo::write(int n){assert(mockAttached);angles.push_back(n);}
 void Servo::detach(){mockAttached=false;}
